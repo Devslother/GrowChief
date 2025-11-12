@@ -1,0 +1,298 @@
+@import "tailwindcss";
+@import "./button.css";
+@import "./input.css";
+
+/* плавный скролл для всех якорных ссылок */
+html {
+  scroll-behavior: smooth;
+}
+/* высота фикс-хедера (адаптивная) */
+:root {
+  --header-h: 80px; /* desktop, tablet */
+}
+@media (max-width: 768px) {
+  :root {
+    --header-h: 60px; /* mobile */
+  }
+}
+/* чтобы якорь не прятался под фикс-хедером */
+[id] {
+  scroll-margin-top: calc(var(--header-h) + 8px); /* +8px "воздуха" */
+}
+
+/* layout-shell для центрирования контента */
+.layout-shell {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 1440px;
+  padding-inline: 100px; /* десктоп: не больше 100px */
+}
+
+@media (max-width: 1023px) {
+  .layout-shell {
+    padding-inline: 30px; /* планшет: всегда 30px */
+  }
+}
+
+@media (max-width: 767px) {
+  .layout-shell {
+    padding-inline: 20px; /* мобилки: всегда 20px */
+  }
+}
+
+@theme {
+  /* GrowChief Color Palette from Figma */
+
+  /* Neutral Colors */
+  --color-neutral-100: #000000;
+  --color-neutral-80: #100f0f;
+  --color-neutral-40: #d1d1d1;
+  --color-neutral-10: #ffffff;
+
+  /* Primary Color */
+  --color-primary-orange: #ff5e00;
+
+  /* Secondary Colors */
+  --color-secondary-blue: #008cff;
+  --color-secondary-purple: #a657ff;
+
+  /* Danger Color */
+  --color-danger-red: #ff1e00;
+
+  /* Fonts - Plus Jakarta Sans is defined in layout.tsx */
+}
+
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+/* Typography Utility Classes - GrowChief (Desktop sizes from Figma) */
+.font-headline-1 {
+  font-size: 75px;
+  line-height: 110%;
+  font-weight: 600; /* SemiBold */
+}
+
+.font-headline-2 {
+  font-size: 60px;
+  line-height: 105%;
+  font-weight: 600;
+}
+
+.font-headline-3 {
+  font-size: 48px;
+  line-height: 110%;
+  font-weight: 700; /* Bold */
+}
+
+.font-headline-4 {
+  font-size: 32px;
+  line-height: 105%;
+  font-weight: 600;
+}
+
+.font-body-1 {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 500; /* Medium */
+}
+
+.font-body-2 {
+  font-size: 22px;
+  line-height: 24px;
+  font-weight: 700;
+}
+
+.font-body-3 {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 600;
+}
+
+.font-body-4 {
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 400;
+}
+
+.font-body-5 {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 600;
+}
+
+.font-body-6 {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+.font-caption {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.font-button-1 {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 600;
+}
+
+.font-button-2 {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+}
+
+.footer-nav-title {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 600;
+}
+
+.footer-nav-link {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+/* CTA specific typography */
+.cta-headline {
+  font-size: 60px; /* desktop: font-headline-2 */
+  line-height: 105%;
+  font-weight: 600;
+}
+
+.cta-body {
+  font-size: 20px; /* desktop: font-body-4 */
+  line-height: 30px;
+  font-weight: 400;
+}
+
+@media (max-width: 767px) {
+  .cta-headline {
+    font-size: 36px; /* tablet: font-headline-1 */
+    line-height: 110%;
+  }
+
+  .cta-body {
+    font-size: 16px; /* tablet: font-body-2 */
+    line-height: 24px;
+    font-weight: 400;
+  }
+}
+
+/* Responsive Typography - Tablet */
+@media (max-width: 1024px) {
+  .font-headline-1 {
+    font-size: 60px;
+    line-height: 105%;
+  }
+
+  .font-headline-2 {
+    font-size: 48px;
+    line-height: 110%;
+  }
+
+  .font-headline-3 {
+    font-size: 44px;
+    line-height: 110%;
+  }
+
+  .font-headline-4 {
+    font-size: 24px;
+    line-height: 130%;
+    font-weight: 400;
+  }
+
+  .font-body-1 {
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  .font-body-2 {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 400;
+  }
+
+  .font-body-3 {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+  }
+
+  .font-body-4 {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+  }
+
+  .font-body-5 {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+  }
+}
+
+/* Responsive Typography - Mobile */
+@media (max-width: 768px) {
+  .font-headline-1 {
+    font-size: 44px;
+    line-height: 105%;
+  }
+
+  .font-headline-2 {
+    font-size: 36px;
+    line-height: 110%;
+  }
+
+  .font-headline-3 {
+    font-size: 28px;
+    line-height: 110%;
+  }
+
+  .font-headline-4 {
+    font-size: 20px;
+    line-height: 110%;
+    font-weight: 600;
+  }
+
+  .font-body-1 {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 500;
+  }
+
+  .font-body-2 {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 700;
+  }
+
+  .font-body-3 {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+  }
+
+  .font-body-4 {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+  }
+
+  .font-body-5 {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+  }
+}

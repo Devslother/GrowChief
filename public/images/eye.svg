@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 94 94">
+  <defs>
+    <path id="eye-shape" d="M47 34c13.5 0 21 9 21 9s-7.5 9-21 9-21-9-21-9 7.5-9 21-9z"/>
+
+    <clipPath id="eye-clip">
+      <use href="#eye-shape"
+           transform="translate(47 43) scale(1.07,1.39) translate(-47 -43)"/>
+    </clipPath>
+  </defs>
+
+  <!-- смещаю весь глаз чуть вниз -->
+  <g transform="translate(0, 3)">
+    <!-- Белок -->
+    <use href="#eye-shape" fill="#fff"
+         transform="translate(47 43) scale(1.07,1.39) translate(-47 -43)"/>
+
+    <!-- Зрачок -->
+    <g id="pupil" data-pupil="true" clip-path="url(#eye-clip)"
+       style="transform-box: fill-box; transform-origin: center;">
+      <circle cx="47" cy="43" r="8.2" fill="#000"/>
+      <circle cx="49.5" cy="41" r="1.6" fill="#fff" opacity=".9"/>
+      <path fill="#fff"
+            d="M48.8 37.2c.1 2.5 2.1 4.5 4.6 4.5-2.5 0-4.5 2-4.6 4.5l-.1-.3c-.1-2.4-2-4.4-4.6-4.4 2.6 0 4.6-2 4.7-4.3z"/>
+    </g>
+  </g>
+</svg>

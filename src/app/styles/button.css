@@ -1,0 +1,32 @@
+/* Primary */
+.btn_primary {
+  background: radial-gradient(
+      120% 120% at 25% 10%,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0) 55%
+    ),
+    linear-gradient(68deg, #ff6539 0%, #ee5220 48%, #da4a16 100%);
+  box-shadow: 0 0 28px 10px rgba(255, 120, 40, 0.45);
+}
+
+/* Secondary */
+.btn_secondary {
+  background: radial-gradient(
+      160% 140% at 20% 0%,
+      rgba(255, 255, 255, 0.28) 0%,
+      rgba(255, 255, 255, 0) 45%
+    ),
+    linear-gradient(180deg, #ffffff 0%, #efe7ff 100%);
+  box-shadow: 0 0 26px 10px rgba(118, 33, 214, 0.4);
+}
+
+/* Secondary small */
+.btn_secondary-s {
+  background: radial-gradient(
+      140% 120% at 22% 8%,
+      rgba(255, 255, 255, 0.26) 0%,
+      rgba(255, 255, 255, 0) 50%
+    ),
+    linear-gradient(68deg, #fff1e6 0%, #ffcba6 100%);
+  box-shadow: 0 0 24px 10px rgba(255, 105, 50, 0.42);
+}
