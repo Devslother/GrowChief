@@ -1,0 +1,157 @@
+/* Базовая карточка */
+.pricing-card {
+  position: relative;
+  border-radius: 32px;
+  padding: 36px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (width <= 1024px) {
+  .pricing-card {
+    padding: 16px;
+    height: 400px;
+  }
+}
+
+/* ====== ФОН ====== */
+
+/* Normal (purple) */
+.pricing-card--purple {
+  /* цветной верх → тёмный низ */
+  background: radial-gradient(
+      140% 160% at 50% 0%,
+      rgba(118, 33, 214, 0.6) 0%,
+      rgba(118, 33, 214, 0) 37%
+    ),
+    #111011;
+}
+
+/* Team (orange) */
+.pricing-card--orange {
+  background: radial-gradient(
+      140% 160% at 50% 0%,
+      rgba(208, 77, 25, 0.6) 0%,
+      rgba(208, 77, 25, 0) 37%
+    ),
+    #111011;
+}
+
+/* Ultra (blue) */
+.pricing-card--blue {
+  background: radial-gradient(
+      140% 160% at 50% 0%,
+      rgba(16, 81, 169, 0.6) 0%,
+      rgba(16, 81, 169, 0) 37%
+    ),
+    #111011;
+}
+
+/* ---- ВНЕШНИЙ ГРАДИЕНТНЫЙ БОРДЕР ---- */
+
+.pricing-border {
+  padding: 1px; /* толщина рамки */
+  border-radius: 34px; /* чуть больше чем у карточки (32px) */
+  overflow: hidden;
+}
+
+.pricing-border--purple {
+  background:
+    /* верх */ radial-gradient(
+      90% 60% at 50% 0%,
+      #7621d6 0%,
+      rgba(118, 33, 214, 0) 70%
+    ),
+    /* низ */
+      radial-gradient(
+        90% 60% at 50% 100%,
+        #7621d6 0%,
+        rgba(118, 33, 214, 0) 70%
+      ),
+    /* слева — главное отличие */
+      radial-gradient(70% 100% at 0% 50%, #7621d6 0%, rgba(118, 33, 214, 0) 80%);
+}
+
+.pricing-border--orange {
+  background:
+    /* верх */ radial-gradient(
+      90% 60% at 50% 0%,
+      #d04d19 0%,
+      rgba(208, 77, 25, 0) 70%
+    ),
+    /* низ */
+      radial-gradient(90% 60% at 50% 100%, #d04d19 0%, rgba(208, 77, 25, 0) 70%);
+}
+
+.pricing-border--blue {
+  background:
+  /* светлый верхний блик */ radial-gradient(
+      90% 60% at 50% 0%,
+      #1051a9 0%,
+      rgba(16, 81, 169, 0) 70%
+    ),
+    /* цвет снизу */
+      radial-gradient(90% 60% at 50% 100%, #1051a9 0%, rgba(16, 81, 169, 0) 70%),
+    /* цвет справа */
+      radial-gradient(
+        70% 100% at 100% 50%,
+        #1051a9 0%,
+        rgba(16, 81, 169, 0) 80%
+      );
+}
+
+/* Tab Switch */
+/* Внешний контейнер тоггла */
+.tab-switch {
+  position: relative;
+  padding: 4px;
+  border-radius: 48px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  /* Figma: чёрный → серый сверху вниз */
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(46, 46, 46, 0.8) 100%
+  );
+
+  /* Figma: светлая обводка */
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  /* Glow-тонкая подсветка */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.12),
+    inset 0 0 12px rgba(255, 255, 255, 0.08);
+}
+
+/* Базовый таб (оба состояния) */
+.tab-switch__item {
+  flex: 1 1 0;
+  border: none;
+  outline: none;
+  border-radius: 9999px;
+  background: transparent;
+  color: #ffffffcc;
+  padding: 12px 32px;
+  cursor: pointer;
+  transition: color 160ms ease, background 160ms ease, box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+/* Активный таб, фон как у btn_secondary-s, свечение слева */
+.tab-switch__item--active {
+  background: radial-gradient(
+      180% 160% at 0% 50%,
+      /* ← центр свечения полностью слева */ rgba(255, 255, 255, 0.32) 0%,
+      rgba(255, 255, 255, 0) 55%
+    ),
+    linear-gradient(68deg, #fff1e6 0%, #ffcba6 100%);
+
+  color: #111011;
+  border-radius: 9999px;
+  box-shadow: -22px 0px 44px 8px rgba(255, 105, 50, 0.45); /* glow ТОЛЬКО слева */
+  transform: translateY(-1px);
+  transition: all 200ms ease;
+}

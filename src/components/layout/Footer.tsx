@@ -7,7 +7,7 @@ export const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer role="contentinfo" className="bg-black text-white layout-shell">
+    <footer role="contentinfo" className="layout-shell">
       {/* Внешний центрирующий контейнер как в Header */}
       <div className="flex justify-center">
         {/* Внутренний контейнер: ширина и паддинги */}

@@ -13,6 +13,7 @@ const buttonVariants = {
   primary: "btn_primary text-white",
   secondary: "btn_secondary text-black",
   "secondary-s": "btn_secondary-s text-black",
+  "secondary-b": "btn_secondary-b text-black",
   tertiary:
     "bg-[var(--color-neutral-100)] text-white border border-[var(--color-neutral-10)] hover:bg-[var(--color-neutral-80)] hover:border-[var(--color-primary-orange)]",
   link: "bg-transparent text-black hover:text-[var(--color-primary-orange)] hover:underline",
@@ -46,6 +47,7 @@ const GLOW = {
   primary: "rgba(255,120,40,0.45)",
   secondary: "rgba(118,33,214,0.40)",
   "secondary-s": "rgba(255,105,50,0.42)",
+  "secondary-b": "rgba(0,140,255,0.4)",
 } as const;
 
 export const Button = (props: ButtonProps) => {
@@ -101,7 +103,8 @@ export const Button = (props: ButtonProps) => {
   const interactiveHandlers =
     variant === "primary" ||
     variant === "secondary" ||
-    variant === "secondary-s"
+    variant === "secondary-s" ||
+    variant === "secondary-b"
       ? { onMouseMove: onMove, onMouseLeave: onLeave }
       : {};
 

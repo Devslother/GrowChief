@@ -8,6 +8,7 @@ export const links = {
   facebook: "https://www.facebook.com/getpostiz",
   discord: "https://discord.com/invite/UecuNKV3",
   youtube: "https://www.youtube.com/@PostizOfficial",
+  promo: "https://postiz.com/",
 
   // open graph
   ogTitle: "AI engagement agent for your socials",

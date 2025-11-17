@@ -7,14 +7,14 @@ import SpyEye from "../ui/SpyEye";
 
 const CTA = () => {
   return (
-    <section className="bg-black text-white layout-shell pt-9 pb-[72px] max-lg:pt-[30px]">
+    <section className="layout-shell pt-9 pb-[72px] max-lg:pt-[30px]">
       {/* градиентная рамка через вложенный блок с p-[1px] */}
       <div className="relative mx-auto w-full max-w-[1120px] rounded-[32px] p-px bg-linear-to-br from-[#FF8A3D] via-neutral-100 to-[#2BB0FF]">
         {/* внутренний контейнер с фоном и контентом */}
         <div className="relative overflow-hidden rounded-[32px] py-[88px] text-center max-md:px-6 max-md:pt-[72px] max-md:pb-[88px]">
           {/* фоновая картинка: родитель relative, Image — fill */}
           <Image
-            src="/images/cta-bg.png"
+            src="/images/main-bg.png"
             alt="" /* декоративное изображение */
             aria-hidden="true"
             fill
