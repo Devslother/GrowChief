@@ -6,13 +6,13 @@ const Features = () => {
       id="features"
       className="layout-shell pt-[100px] pb-[52px] max-lg:pt-[80px] max-lg:pb-20 max-md:pt-[60px] max-md:pb-[60px]"
     >
-      <div className="flex flex-col gap-10">
+      <div className="flex flex-col gap-10 max-w-[1120px] mx-auto w-full">
         <h2 className="font-headline-2 text-start">
           You&apos;re always
           <br className="md:hidden" /> in control
         </h2>
         {/* Desktop: 2x2 grid */}
-        <div className="max-lg:hidden flex flex-col gap-4 max-w-[1120px] mx-auto w-full">
+        <div className="max-lg:hidden flex flex-col gap-4">
           {/* Первый ряд: широкий, узкий */}
           <div className="lg:grid lg:grid-cols-[1.414fr_1fr] lg:gap-4">
             <Image
