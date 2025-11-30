@@ -16,8 +16,3 @@ export const prisma =
 if (process.env.NODE_ENV !== "production") {
   globalForPrisma.prisma = prisma;
 }
-
-// Проверка подключения к базе данных при инициализации
-if (process.env.NODE_ENV === "development" && !process.env.DATABASE_URL) {
-  console.warn("⚠️  DATABASE_URL is not set. Prisma will fail to connect.");
-}

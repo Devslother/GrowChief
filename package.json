@@ -24,7 +24,6 @@
     "next": "16.0.0",
     "next-auth": "^4.24.13",
     "next-svgr": "^0.0.2",
-    "prisma": "^6.19.0",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-hook-form": "^7.65.0",
@@ -40,6 +39,7 @@
     "dotenv": "^17.2.3",
     "eslint": "^9",
     "eslint-config-next": "16.0.0",
+    "prisma": "^6.19.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
