@@ -3,6 +3,9 @@
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState } from "react";
 
+// Отключаем статическую генерацию - страница должна рендериться динамически
+export const dynamic = "force-dynamic";
+
 export default function ResetPasswordPage() {
   const params = useSearchParams();
   const router = useRouter();
