@@ -4,6 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  PRISMA_QUERY_ENGINE_LIBRARY = "./src/generated/prisma/libquery_engine-rhel-openssl-3.0.x.so.node"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
