@@ -1,12 +1,20 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 
 // Отключаем статическую генерацию - страница должна рендериться динамически
 export const dynamic = "force-dynamic";
 
 export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={<div className="layout-shell py-16">Loading...</div>}>
+      <ResetPasswordForm />
+    </Suspense>
+  );
+}
+
+function ResetPasswordForm() {
   const params = useSearchParams();
   const router = useRouter();
 
@@ -25,7 +33,7 @@ export default function ResetPasswordPage() {
     );
   }
 
-  const submit = async (e: any) => {
+  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
 
