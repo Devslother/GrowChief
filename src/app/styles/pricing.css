@@ -105,13 +105,10 @@
 /* Внешний контейнер тоггла */
 .tab-switch {
   position: relative;
+  display: flex;
+  gap: 6px;
   padding: 4px;
   border-radius: 48px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-
-  /* Figma: чёрный → серый сверху вниз */
   background: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0.5) 0%,
@@ -126,32 +123,39 @@
     inset 0 0 12px rgba(255, 255, 255, 0.08);
 }
 
-/* Базовый таб (оба состояния) */
-.tab-switch__item {
-  flex: 1 1 0;
-  border: none;
-  outline: none;
+.tab-switch__pill {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  height: calc(100% - 8px);
   border-radius: 9999px;
-  background: transparent;
-  color: #ffffffcc;
-  padding: 12px 32px;
-  cursor: pointer;
-  transition: color 160ms ease, background 160ms ease, box-shadow 160ms ease,
-    transform 160ms ease;
-}
 
-/* Активный таб, фон как у btn_secondary-s, свечение слева */
-.tab-switch__item--active {
   background: radial-gradient(
       180% 160% at 0% 50%,
-      /* ← центр свечения полностью слева */ rgba(255, 255, 255, 0.32) 0%,
-      rgba(255, 255, 255, 0) 55%
+      rgba(255, 255, 255, 0.28) 0%,
+      rgba(255, 255, 255, 0) 60%
     ),
     linear-gradient(68deg, #fff1e6 0%, #ffcba6 100%);
 
-  color: #111011;
+  box-shadow: -12px 0px 28px 4px rgba(255, 105, 50, 0.35);
+  z-index: 0;
+}
+
+.tab-switch__item {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 0;
+  border: none;
+  background: transparent;
+  color: #ffffffcc;
+  padding: 12px 32px;
   border-radius: 9999px;
-  box-shadow: -22px 0px 44px 8px rgba(255, 105, 50, 0.45); /* glow ТОЛЬКО слева */
-  transform: translateY(-1px);
-  transition: all 200ms ease;
+  cursor: pointer;
+  transition: color 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* тут меняется только цвет текста, не фон */
+.tab-switch__item--active {
+  color: #111011;
 }

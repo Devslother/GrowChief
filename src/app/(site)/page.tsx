@@ -1,4 +1,4 @@
-import Faq from "@/components/sections/mainPage/Fag";
+import Faq from "@/components/sections/mainPage/Faq";
 import Features from "@/components/sections/mainPage/Features";
 import Hero from "@/components/sections/mainPage/Hero";
 import MainVideo from "@/components/sections/mainPage/MainVideo";

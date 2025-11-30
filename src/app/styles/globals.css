@@ -171,6 +171,20 @@ body {
   font-weight: 400;
 }
 
+/* Promo specific typography */
+.promo-headline {
+  font-size: 44px;
+  line-height: 110%;
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .promo-headline {
+    font-size: 28px;
+    line-height: 110%;
+  }
+}
+
 /* CTA specific typography */
 .cta-headline {
   font-size: 60px; /* desktop: font-headline-2 */
@@ -332,7 +346,6 @@ body {
   border-radius: 32px;
 
   background:
-
     /* —–– Верхнее легкое свечение (шире по горизонтали) —–– */ radial-gradient(
       120% 70% at 50% 0%,
       /* шире → закрывает углы */ rgba(255, 255, 255, 0.37) 0%,
@@ -350,16 +363,4 @@ body {
 .faq-inner {
   background: #000;
   border-radius: 31px; /* на 1px меньше рамки */
-}
-
-/* ===== OPEN STATE ===== */
-.faq-item-open-inner {
-  border-radius: 31px;
-  border: 0.5px solid rgba(59, 90, 255, 0.55);
-  background: radial-gradient(
-    70% 100% at 30% 50%,
-    /* центр свечения слева */ rgba(59, 90, 255, 0.25) 0%,
-    rgba(59, 90, 255, 0.1) 70%,
-    rgba(0, 0, 0, 1) 100%
-  );
 }

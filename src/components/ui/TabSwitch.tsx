@@ -1,3 +1,6 @@
+"use client";
+import { motion } from "framer-motion";
+
 interface TabSwitchProps {
   value: "monthly" | "yearly";
   onChange: (value: "monthly" | "yearly") => void;
@@ -6,6 +9,12 @@ interface TabSwitchProps {
 const TabSwitch = ({ value, onChange }: TabSwitchProps) => {
   return (
     <div className="tab-switch">
+      {/* двигающийся highlight */}
+      <motion.div
+        className="tab-switch__pill"
+        animate={{ translateX: value === "monthly" ? "0%" : "100%" }}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      />
       <button
         type="button"
         className={

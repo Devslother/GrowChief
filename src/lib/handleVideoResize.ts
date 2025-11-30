@@ -31,8 +31,31 @@ export function handleVideoResize(video: HTMLVideoElement | null) {
       return mql;
     });
 
+  // наблюдатель за появлением видео в вьюпорте
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          // как минимум попробуем автозапуск
+          video.play().catch(() => {
+            // браузер мог запретить автоплей со звуком
+          });
+        } else {
+          // ушло из кадра → ставим на паузу
+          video.pause();
+        }
+      }
+    },
+    {
+      threshold: 0.5, // 50% элемента в кадре
+    }
+  );
+
+  observer.observe(video);
+
   // функция очистки
   return () => {
     mqls.forEach((mql) => mql.removeEventListener("change", updateVideo));
+    observer.disconnect();
   };
 }

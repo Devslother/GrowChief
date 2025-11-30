@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Button } from "../ui/Button";
 import { links } from "@/lib/links";
 import SpyEye from "../ui/SpyEye";
+import { cn } from "@/lib/utils";
 
 const CTA = () => {
   return (
@@ -12,16 +13,16 @@ const CTA = () => {
       <div className="relative mx-auto w-full max-w-[1120px] rounded-[32px] p-px bg-linear-to-br from-[#FF8A3D] via-neutral-100 to-[#2BB0FF]">
         {/* внутренний контейнер с фоном и контентом */}
         <div className="relative overflow-hidden rounded-[32px] py-[88px] text-center max-md:px-6 max-md:pt-[72px] max-md:pb-[88px]">
-          {/* фоновая картинка: родитель relative, Image — fill */}
+          {/* фоновая картинка */}
           <Image
             src="/images/main-bg.png"
-            alt="" /* декоративное изображение */
-            aria-hidden="true"
+            alt=""
             fill
-            className="object-cover opacity-90"
-            sizes="(max-width: 768px) 100vw, 1120px"
-            priority
-            loading="eager"
+            className={cn(
+              "pointer-events-none absolute inset-0 z-10 object-cover"
+            )}
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 90vw, 1120px"
+            priority={false}
           />
 
           {/* контент поверх фона */}

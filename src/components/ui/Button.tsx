@@ -44,8 +44,7 @@ type ButtonProps =
       });
 
 const GLOW = {
-  primary: "rgba(255,120,40,0.45)",
-  secondary: "rgba(118,33,214,0.40)",
+  secondary: "rgba(118,33,214,0.70)",
   "secondary-s": "rgba(255,105,50,0.42)",
   "secondary-b": "rgba(0,140,255,0.4)",
 } as const;
@@ -69,16 +68,94 @@ export const Button = (props: ButtonProps) => {
     classes
   );
 
-  const glowColor = GLOW[variant as keyof typeof GLOW] ?? GLOW.primary;
+  const isSecondary =
+    variant === "secondary" ||
+    variant === "secondary-s" ||
+    variant === "secondary-b";
 
-  function onMove(e: React.MouseEvent<HTMLElement>) {
+  // сохраняю t между движениями primary
+  const lastTRef = useRef(0);
+
+  // базовые X для тени слева
+  const LEFT_X = [-32, -4, -66, -100];
+  // зеркальные X справа
+  const RIGHT_X = [32, 4, 66, 100];
+
+  const BLUR = [54, 12, 66, 44];
+  const SPREAD = [0, 0, 0, 0];
+  const COLORS = [
+    "rgba(255, 43, 0, 0.5)",
+    "rgba(255, 0, 0, 0.15)",
+    "rgba(255, 102, 25, 0.15)",
+    "rgba(255, 0, 0, 0.15)",
+  ];
+
+  const INNER = "2px -2px 12px 0 rgba(255, 255, 255, 0.06)";
+
+  function buildShadow(t: number) {
+    const layers = LEFT_X.map((lx, i) => {
+      const rx = RIGHT_X[i];
+      const x = lx + (rx - lx) * t;
+      return `${x}px 0 ${BLUR[i]}px ${SPREAD[i]}px ${COLORS[i]}`;
+    });
+
+    layers.push(INNER);
+    return layers.join(", ");
+  }
+
+  function onMovePrimary(e: React.MouseEvent<HTMLElement>) {
+    if (variant !== "primary") return;
+
     const el = elRef.current;
     if (!el) return;
-    const r = el.getBoundingClientRect();
-    const dx = (e.clientX - r.left) / r.width - 0.5; // -0.5..0.5
-    const dy = (e.clientY - r.top) / r.height - 0.5; // -0.5..0.5
 
-    // смещаем тень и чуть саму кнопку
+    const r = el.getBoundingClientRect();
+    let nx = (e.clientX - r.left) / r.width; // 0..1
+    nx = Math.max(0, Math.min(1, nx));
+
+    const t = nx;
+    lastTRef.current = t;
+
+    gsap.to(el, {
+      boxShadow: buildShadow(t),
+      duration: 0.22,
+      ease: "power3.out",
+      overwrite: "auto",
+    });
+  }
+
+  function onLeavePrimary() {
+    // primary НЕ возвращаем — тень фиксируется
+    return;
+  }
+
+  // для secondary сохраняем базовую тень из css один раз
+  const baseShadowRef = useRef<string | null>(null);
+
+  function onEnterSecondary() {
+    const el = elRef.current;
+    if (!el) return;
+
+    if (!baseShadowRef.current) {
+      baseShadowRef.current = getComputedStyle(el).boxShadow;
+    }
+  }
+
+  function onMoveSecondary(e: React.MouseEvent<HTMLElement>) {
+    const el = elRef.current;
+    if (!el) return;
+
+    if (!baseShadowRef.current) {
+      baseShadowRef.current = getComputedStyle(el).boxShadow;
+    }
+
+    const r = el.getBoundingClientRect();
+    const dx = (e.clientX - r.left) / r.width - 0.5;
+    const dy = (e.clientY - r.top) / r.height - 0.5;
+
+    const glowColor = GLOW[variant as keyof typeof GLOW];
+    if (!glowColor) return;
+
     gsap.to(el, {
       boxShadow: `${dx * 18}px ${dy * 14}px 32px 10px ${glowColor}`,
       y: dy * 2,
@@ -88,11 +165,14 @@ export const Button = (props: ButtonProps) => {
     });
   }
 
-  function onLeave() {
+  function onLeaveSecondary() {
     const el = elRef.current;
     if (!el) return;
+
+    const baseShadow = baseShadowRef.current || getComputedStyle(el).boxShadow;
+
     gsap.to(el, {
-      boxShadow: `0 0 28px 10px ${glowColor}`,
+      boxShadow: baseShadow,
       y: 0,
       duration: 0.45,
       ease: "power2.out",
@@ -101,12 +181,15 @@ export const Button = (props: ButtonProps) => {
   }
 
   const interactiveHandlers =
-    variant === "primary" ||
-    variant === "secondary" ||
-    variant === "secondary-s" ||
-    variant === "secondary-b"
-      ? { onMouseMove: onMove, onMouseLeave: onLeave }
-      : {};
+    variant === "primary"
+      ? { onMouseMove: onMovePrimary, onMouseLeave: onLeavePrimary }
+      : isSecondary
+      ? {
+          onMouseEnter: onEnterSecondary,
+          onMouseMove: onMoveSecondary,
+          onMouseLeave: onLeaveSecondary,
+        }
+      : {}; // tertiary + link без gsap
 
   if (element === "a" && "href" in props && props.href) {
     const { href, isExternal, ...anchorProps } = props;

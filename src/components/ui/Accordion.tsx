@@ -9,15 +9,11 @@ interface AccordionProps {
 }
 
 const Accordion = ({ items }: AccordionProps) => {
-  // вместо одного индекса храним массив открытых
   const [openIndexes, setOpenIndexes] = useState<number[]>([]);
 
   const toggle = (index: number) => {
-    setOpenIndexes(
-      (prev) =>
-        prev.includes(index)
-          ? prev.filter((i) => i !== index) // если уже открыт, закрываем
-          : [...prev, index] // если закрыт, добавляем к открытым
+    setOpenIndexes((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
   };
 
@@ -27,55 +23,60 @@ const Accordion = ({ items }: AccordionProps) => {
         const opened = openIndexes.includes(index);
 
         return (
-          <div key={index}>
-            {/* CLOSED */}
-            {!opened && (
-              <div className="faq-border">
-                <button
-                  type="button"
-                  onClick={() => toggle(index)}
-                  className={cn(
-                    "faq-inner",
-                    "w-full flex items-center justify-between rounded-[30px]",
-                    "px-9 py-8", // desktop
-                    "max-lg:p-[30px]", // tablet
-                    "max-md:px-6 max-md:py-[22px]", // mobile
-                    "text-left"
-                  )}
-                >
-                  <h3 className="font-body-1">{item.question}</h3>
-                  <DownIcon className="w-6 h-4 shrink-0 ml-4" />
-                </button>
-              </div>
-            )}
-
-            {/* OPEN */}
-            {opened && (
+          <div key={index} className="relative">
+            {/* Внешняя рамка: в закрытом и открытом состояниях одна и та же */}
+            <div className={cn("rounded-[30px] overflow-hidden", "faq-border")}>
+              {/* ВЕСЬ контент — один блок, он ВСЕГДА в DOM */}
               <div
+                onClick={() => toggle(index)}
                 className={cn(
-                  "faq-item-open-inner",
-                  "rounded-[30px]",
-                  "px-9 py-8",
+                  "relative cursor-pointer rounded-[30px] px-9 py-8",
                   "max-lg:p-[30px]",
-                  "max-md:px-6 max-md:py-[22px]"
+                  "max-md:px-6 max-md:py-[22px]",
+                  "faq-inner",
+                  "transition-colors duration-500 ease-out"
                 )}
               >
-                <div className="flex items-center justify-between mb-10">
+                {/* Фоновая картинка: всегда в DOM, но плавно показываем/скрываем */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/faq-bg.png"
+                  alt=""
+                  className={cn(
+                    "pointer-events-none absolute inset-0 z-10 h-full w-full object-cover",
+                    "transition-opacity duration-500 ease-out",
+                    opened ? "opacity-100" : "opacity-0"
+                  )}
+                />
+
+                {/* Верх: вопрос + стрелка */}
+                <div className="relative z-10 flex items-center justify-between gap-4">
                   <h3 className="font-body-1 text-start">{item.question}</h3>
-                  <button
-                    type="button"
-                    onClick={() => toggle(index)}
-                    className="shrink-0 ml-4"
-                  >
-                    <DownIcon className="w-6 h-4 rotate-180" />
-                  </button>
+                  <DownIcon
+                    className={cn(
+                      "w-6 h-4 shrink-0 ml-4 transition-transform duration-300",
+                      opened ? "rotate-180" : "rotate-0"
+                    )}
+                  />
                 </div>
 
-                <div className="pr-[140px] max-md:pr-0">
-                  <p className="font-body-4 text-start">{item.answer}</p>
+                {/* Анимируем высоту ответа — grid-trick */}
+                <div
+                  className={cn(
+                    "relative z-10 grid transition-[grid-template-rows] duration-600 ease-[cubic-bezier(0.25,1,0.5,1)]",
+                    opened
+                      ? "grid-rows-[1fr] pt-8 max-md:pt-6"
+                      : "grid-rows-[0fr] pt-0"
+                  )}
+                >
+                  <div className="overflow-hidden">
+                    <p className="font-body-4 text-start pr-[140px] max-md:pr-0">
+                      {item.answer}
+                    </p>
+                  </div>
                 </div>
               </div>
-            )}
+            </div>
           </div>
         );
       })}

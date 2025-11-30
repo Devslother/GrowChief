@@ -32,6 +32,7 @@ const MainVideo = () => {
         <video
           ref={videoRef}
           className="h-full w-full object-contain"
+          muted
           playsInline
           preload="auto"
           controls

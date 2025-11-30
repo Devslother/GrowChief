@@ -57,7 +57,7 @@ const Header = () => {
 
           {/* desktop nav */}
           <nav className="hidden flex-1 items-center justify-center lg:flex">
-            <ul className="flex gap-8">
+            <ul className="flex gap-8 pl-[40px] max-lg:pl-0">
               {NAV_ITEMS.map(({ href, title }) => (
                 <li key={title}>
                   <CustomLink

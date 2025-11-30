@@ -2,6 +2,7 @@ import { PricingCardType } from "@/types/types";
 import { cn } from "@/lib/utils";
 import { links } from "@/lib/links";
 import { Button } from "./Button";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface PricingCardProps {
   card: PricingCardType;
@@ -34,15 +35,29 @@ export const PricingCard = ({ card, billing }: PricingCardProps) => {
         {/* Цена */}
         <div className="mb-[30px]">
           <div className="flex items-end gap-1">
-            <span className="font-headline-3">{currentPrice.price}</span>
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={billing}
+                initial={{ opacity: 1 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                className="font-headline-3"
+              >
+                {currentPrice.price}
+              </motion.span>
+            </AnimatePresence>
             <span className="font-body-6 text-white/60">/month</span>
           </div>
-
-          {currentPrice.features && (
-            <p className="text-white/60 font-body-6 mt-2">
-              {currentPrice.features}
-            </p>
-          )}
+          {/* подзаголовок под ценой всегда занимает место */}
+          <p
+            className={cn(
+              "text-white/60 font-body-6 mt-2 min-h-[20px] transition-opacity duration-200",
+              !currentPrice.features && "opacity-0 select-none"
+            )}
+          >
+            {currentPrice.features ?? "placeholder"}
+          </p>
         </div>
 
         {/* Горизонтальная линия */}

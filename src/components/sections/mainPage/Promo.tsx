@@ -23,16 +23,16 @@ const Promo = () => {
           "
         >
           {/* контент — поверх фона */}
-          <div className="relative flex flex-col z-10 h-full items-start py-[45px] px-[60px] max-lg:px-10 max-md:py-[30px] max-md:px-6 gap-11">
+          <div className="relative flex flex-col z-10 h-full items-start py-[45px] px-[50px] max-lg:px-10 max-md:py-[30px] max-md:px-6 gap-11">
             <div className="flex flex-col gap-6">
               <p className="font-body-1">
                 Social Media Companion for GrowChief
               </p>
-              <h3 className="font-headline-3">
+              <h3 className="promo-headline">
                 Postiz is an open-source tool <br className="max-md:hidden" />
                 for social media scheduling
               </h3>
-              <p className="font-body-2">
+              <p className="font-body-4">
                 Provides tools to manage social media, build an audience,
                 <br className="max-md:hidden" />
                 generate leads, and grow your business.
