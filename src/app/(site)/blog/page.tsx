@@ -46,20 +46,29 @@ export default async function BlogPage() {
         </p>
       </div>
 
-      <article className="flex flex-row rounded-4xl overflow-hidden mb-[120px] max-lg:flex-col max-md:mb-16 bg-neutral-80">
+      <article className="flex rounded-4xl overflow-hidden mb-[120px] bg-neutral-80 max-lg:flex-col max-md:mb-16">
+        {/* левая часть: обложка */}
         <Link
           href={`/blog/${slug}`}
-          className="relative flex-1 overflow-hidden block aspect-video min-h-[450px] max-lg:min-h-[400px]"
+          className="relative flex-[2.1] max-lg:w-full"
         >
           <Image
             src={articleImage}
             alt={article.title}
-            fill
-            className="object-cover"
+            width={1200}
+            height={800}
+            // заполняем всю колонку по высоте и ширине
+            className="
+        h-full w-full object-cover
+        max-lg:h-auto   /* на планшете и мобилке высота подстраивается автоматически */
+      "
           />
         </Link>
-        <div className="flex flex-1 flex-col gap-6 p-12 max-md:px-5 max-md:pt-5 max-md:pb-8 max-md:gap-4 text-left">
+
+        {/* правая часть: контент */}
+        <div className="flex flex-[2] flex-col justify-center gap-6 p-12 max-md:px-5 max-md:pt-5 max-md:pb-8 max-md:gap-4 text-left">
           <h2 className="font-body-3 text-primary-orange">Latest Post</h2>
+
           <Link href={`/blog/${slug}`}>
             <div className="flex flex-col gap-5 max-md:gap-4">
               <h3 className="font-headline-4 hover:opacity-80">
@@ -70,6 +79,7 @@ export default async function BlogPage() {
               </p>
             </div>
           </Link>
+
           <AuthorData author={author} date={article.date} />
         </div>
       </article>

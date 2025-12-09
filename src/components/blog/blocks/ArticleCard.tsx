@@ -18,7 +18,7 @@ export const ArticleCard = ({ article, author }: ArticleCardProps) => {
       {/* обложка */}
       <Link
         href={`/blog/${article.slug}`}
-        className="relative overflow-hidden block h-[252px]"
+        className="relative overflow-hidden block h-[252px]  max-md:h-[230px]"
       >
         <Image
           src={articleImage}
