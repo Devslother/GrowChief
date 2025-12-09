@@ -1,0 +1,76 @@
+import {
+  Anchor,
+  H2,
+  H3,
+  Image,
+  Divider,
+  List,
+  Item,
+  P,
+  Table,
+} from "@/components/blog/ui";
+
+<Image src="/blog/postiz-v1-6-7-more-social-media-platforms.png" />
+
+<P>Hi, welcome to the first Postiz newsletter.</P>
+
+<P>
+  A few versions have been released lately, so let’s review the newest features!
+</P>
+
+<List>
+  <Item>Add Bluesky, Mastodon, Discord, Slack, and X providers.</Item>
+  <Item>
+    Team fixes - you can now invite your team members. We have fixed most of the
+    bugs.
+  </Item>
+  <Item>
+    Improve the refresh token mechanism (even for more complicated ones like
+    Facebook and Instagram)
+  </Item>
+  <Item>
+    Self-Hosted: Generic Email Provider & Easier installation experience (drop
+    the default Resend and add a nodemailer option!)
+  </Item>
+  <Item classes="py-5">
+    Self-Hosted: Add multiple options for uploading files (locally / R2) -
+    working on S3.
+  </Item>
+  <Item>Self-Hosted: Uploading fixed for smaller files.</Item>
+  <Item>
+    Self-Hosted: a lot easier deployment, run docker-compose without changing
+    almost any parameter.
+  </Item>
+</List>
+
+<div className="my-5">
+  <P>
+    Register to Postiz:
+    <Anchor classes="ml-0.5" href="https://platform.postiz.com" isExternal>
+      https://platform.postiz.com
+    </Anchor>
+  </P>
+  <P>
+    Open-source:
+    <Anchor
+      classes="ml-0.5"
+      href="https://github.com/gitroomhq/postiz-app"
+      isExternal
+    >
+      https://github.com/gitroomhq/postiz-app
+    </Anchor>
+  </P>
+  <P>
+    Docs:
+    <Anchor classes="ml-0.5" href="https://docs.postiz.com" isExternal>
+      https://docs.postiz.com
+    </Anchor>
+  </P>
+</div>
+
+<div className="my-5">
+  <P>If you love Postiz so far! Please make sure you rank us on G2:</P>
+  <Anchor href="https://www.g2.com/products/postiz">
+    https://www.g2.com/products/postiz
+  </Anchor>
+</div>

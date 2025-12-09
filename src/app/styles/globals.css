@@ -2,6 +2,7 @@
 @import "./button.css";
 @import "./input.css";
 @import "./pricing.css";
+@import "./blog.css";
 
 /* плавный скролл для всех якорных ссылок */
 html {
@@ -224,7 +225,7 @@ body {
   }
 
   .font-headline-3 {
-    font-size: 44px;
+    font-size: 40px;
     line-height: 110%;
   }
 
@@ -288,7 +289,7 @@ body {
   }
 
   .font-headline-3 {
-    font-size: 28px;
+    font-size: 32px;
     line-height: 110%;
   }
 

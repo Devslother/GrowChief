@@ -1,0 +1,37 @@
+.author-card-border {
+  padding: 1px; /* толщина рамки */
+  border-radius: 34px; /* больше чем у внутренней карточки */
+  overflow: hidden;
+
+  background:
+    /* мягкое свечение слева сверху */ radial-gradient(
+      120% 90% at 0% 0%,
+      rgba(255, 255, 255, 0.36) 0%,
+      rgba(255, 255, 255, 0) 70%
+    ),
+    /* мягкое свечение справа сверху */
+      radial-gradient(
+        120% 90% at 100% 0%,
+        rgba(255, 255, 255, 0.22) 0%,
+        rgba(255, 255, 255, 0) 70%
+      ),
+    /* базовая тонкая светлая окантовка по периметру */
+      rgba(255, 255, 255, 0.08);
+}
+
+/* Grid для карточек статей с ограничением максимальной ширины */
+.articles-grid {
+  grid-template-columns: repeat(3, minmax(200px, 480px));
+}
+
+@media (max-width: 1023px) {
+  .articles-grid {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .articles-grid {
+    grid-template-columns: 1fr;
+  }
+}

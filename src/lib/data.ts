@@ -6,7 +6,11 @@ import { links } from "./links";
 import IconOne from "@/public/icons/pricing/one.svg";
 import IconGroup from "@/public/icons/pricing/group.svg";
 import IconTeam from "@/public/icons/pricing/team.svg";
-import { PricingCardType } from "@/types/types";
+import {
+  PricingCardType,
+  AuthorFrontmatter,
+  BlogPostFrontmatter,
+} from "@/types/types";
 import Agencies from "@/public/icons/usecases/agencies.svg";
 import Creators from "@/public/icons/usecases/creators.svg";
 import Experts from "@/public/icons/usecases/experts.svg";
@@ -190,3 +194,55 @@ export const FAQ_ITEMS = [
       "Annual billing offers a significant discount compared to monthly billing. The annual amount is charged once per year, providing you with cost savings while ensuring uninterrupted access to all features.",
   },
 ];
+
+/**
+ * Данные авторов
+ * Хранятся отдельно от MDX файлов, чтобы frontmatter не отображался в контенте
+ */
+export const authorsData: Record<string, AuthorFrontmatter> = {
+  david: {
+    authorSlug: "David",
+    description:
+      "Founder of Postiz, on a mission to increase revenue for ambitious entrepreneurs",
+  },
+};
+
+/**
+ * Данные статей блога (frontmatter)
+ * Хранятся отдельно от MDX файлов, чтобы frontmatter не отображался в контенте
+ */
+export const blogPostsData: Record<string, BlogPostFrontmatter> = {
+  "marketing-workflow-management": {
+    title: "Marketing Workflow Management Mastery for Modern Teams",
+    date: "2025-12-01",
+    slug: "marketing-workflow-management",
+    authorSlug: "David",
+    description:
+      "Learn how to design, automate, and optimize marketing workflows so your team spends less time on busywork and more on strategy, creativity, and measurable ROI.",
+    tags: [
+      "marketing",
+      "workflow management",
+      "automation",
+      "marketing ops",
+      "postiz",
+    ],
+  },
+  "postiz-is-on-product-hunt": {
+    title: "Postiz is on Product Hunt!",
+    date: "2025-11-20",
+    slug: "postiz-is-on-product-hunt",
+    authorSlug: "David",
+    description:
+      "Postiz launches on Product Hunt — support us with an upvote to help us deliver more free features and improvements.",
+    tags: ["product", "announcement", "startup", "product-hunt", "postiz"],
+  },
+  "postiz-v1-6-7-more-social-media-platforms": {
+    title: "Postiz v1.6.7 - more social media platforms",
+    date: "2025-11-05",
+    slug: "postiz-v1-6-7-more-social-media-platforms",
+    authorSlug: "David",
+    description:
+      "Postiz v1.6.7 adds support for Bluesky, Mastodon, Discord, Slack, X, major team improvements, easier self-hosted deployment, and new upload options.",
+    tags: ["release", "update", "postiz", "marketing-tools", "newsletter"],
+  },
+};

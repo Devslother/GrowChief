@@ -1,9 +1,16 @@
 import type { NextConfig } from "next";
 import withSvgr from "next-svgr";
+import createMDX from "@next/mdx";
 import { copyFileSync, existsSync, mkdirSync } from "fs";
 import { join } from "path";
 
+const withMDX = createMDX({
+  // Add markdown plugins here, as desired
+});
+
 const nextConfig: NextConfig = {
+  // Configure `pageExtensions` to include markdown and MDX files
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   turbopack: {},
   images: {
     domains: [],
@@ -45,8 +52,17 @@ const nextConfig: NextConfig = {
         return entries;
       };
     }
+
+    // Настраиваем resolve для поддержки алиаса @/ в динамических импортах
+    config.resolve = config.resolve || {};
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "@": join(process.cwd(), "src"),
+    };
+
     return config;
   },
 };
 
-export default withSvgr(nextConfig);
+// Wrap MDX and SVGR configs together
+export default withSvgr(withMDX(nextConfig));
