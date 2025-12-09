@@ -27,14 +27,17 @@ export default async function AuthorPage(props: {
   return (
     <main className="layout-shell pt-12">
       <div className="flex flex-col items-center">
-        <div className="flex flex-row items-start w-full gap-10 pb-[120px] max-lg:flex-col max-md:pb-20">
-          <div className="flex flex-row items-center gap-1 w-full">
+        <div className="flex flex-row items-start w-full gap-5 max-lg:flex-col">
+          {/* Back */}
+          <div className="flex flex-row items-center gap-1 shrink-0 mt-2">
             <Back />
             <Button variant="link" classes="p-0" element="a" href="/blog">
               <span className="text-white font-body-5">Back</span>
             </Button>
           </div>
-          <div className="flex flex-col items-center w-200 max-lg:w-full gap-6">
+
+          {/* Статья */}
+          <div className="flex flex-col items-center w-200 mx-auto max-lg:w-full pb-[120px] gap-6 max-md:pb-20">
             <AuthorCard author={author} />
             <div className="w-full prose prose-invert">
               <AuthorMdxLoader slug={slug} />
