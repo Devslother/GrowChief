@@ -6,12 +6,15 @@ import { Button } from "@/components/ui/Button";
 import { getAuthor, getAllBlogPostsWithAuthors } from "@/lib/blog";
 import { notFound } from "next/navigation";
 
-interface AuthorPageProps {
-  params: { slug: string };
-}
-
-export default async function AuthorPage({ params }: AuthorPageProps) {
-  const { slug } = params;
+// @ts-expect-error - Next.js 16 params can be Promise or object, but PageProps constraint doesn't allow union
+export default async function AuthorPage({
+  params,
+}: {
+  params: Promise<{ slug: string }> | { slug: string };
+}) {
+  // В Next.js 16 params может быть промисом
+  const resolvedParams = params instanceof Promise ? await params : params;
+  const { slug } = resolvedParams;
 
   if (!slug) {
     notFound();

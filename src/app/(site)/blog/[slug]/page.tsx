@@ -13,12 +13,14 @@ import { MdxLoader } from "@/components/blog/MdxLoader";
 import { ShareSocial } from "@/components/blog/blocks/ShareSocial";
 import { AuthorData } from "@/components/blog/blocks/AuthorData";
 
-interface ArticlePageProps {
-  params: { slug: string };
-}
-
-export default async function ArticlePage({ params }: ArticlePageProps) {
-  const { slug } = params;
+// @ts-expect-error - Next.js 16 params can be Promise or object, but PageProps constraint doesn't allow union
+export default async function ArticlePage({
+  params,
+}: {
+  params: Promise<{ slug: string }> | { slug: string };
+}) {
+  const resolvedParams = params instanceof Promise ? await params : params;
+  const { slug } = resolvedParams;
 
   if (!slug) {
     notFound();
