@@ -7,13 +7,11 @@ import { getAuthor, getAllBlogPostsWithAuthors } from "@/lib/blog";
 import { notFound } from "next/navigation";
 
 interface AuthorPageProps {
-  params: Promise<{ slug: string }> | { slug: string };
+  params: { slug: string };
 }
 
 export default async function AuthorPage({ params }: AuthorPageProps) {
-  // В Next.js 16 params может быть промисом
-  const resolvedParams = params instanceof Promise ? await params : params;
-  const { slug } = resolvedParams;
+  const { slug } = params;
 
   if (!slug) {
     notFound();

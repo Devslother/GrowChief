@@ -14,13 +14,11 @@ import { ShareSocial } from "@/components/blog/blocks/ShareSocial";
 import { AuthorData } from "@/components/blog/blocks/AuthorData";
 
 interface ArticlePageProps {
-  params: Promise<{ slug: string }> | { slug: string };
+  params: { slug: string };
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
-  // В Next.js 16 params может быть промисом
-  const resolvedParams = params instanceof Promise ? await params : params;
-  const { slug } = resolvedParams;
+  const { slug } = params;
 
   if (!slug) {
     notFound();
