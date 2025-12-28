@@ -57,7 +57,7 @@ const Header = () => {
 
           {/* desktop nav */}
           <nav className="hidden flex-1 items-center justify-center lg:flex">
-            <ul className="flex gap-8 pl-[40px] max-lg:pl-0">
+            <ul className="flex gap-8">
               {NAV_ITEMS.map(({ href, title }) => (
                 <li key={title}>
                   <CustomLink
@@ -102,7 +102,7 @@ const Header = () => {
               aria-controls="mobile-drawer"
               className="relative hidden items-center max-lg:block"
             >
-              {menu ? <XIcon /> : <BurgerIcon />}
+              {menu ? <XIcon className="w-6 h-6 text-white" /> : <BurgerIcon />}
             </button>
           </div>
         </div>

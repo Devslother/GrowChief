@@ -16,10 +16,100 @@ import Creators from "@/public/icons/usecases/creators.svg";
 import Experts from "@/public/icons/usecases/experts.svg";
 
 export const NAV_ITEMS = [
+  { title: "DevelopersDocs", href: "/docs" },
   { title: "Features", href: "/#features" },
   { title: "Pricing", href: "/#pricing" },
   { title: "FAQ", href: "/#faq" },
   { title: "Blog", href: "/blog" },
+];
+
+export const DOCS_NAV_ITEMS = [
+  {
+    title: "Introduction",
+    href: "/docs",
+    description:
+      "Introduction to GrowChief. Learn what GrowChief is and how it can help automate your social media accounts.",
+    tags: [
+      "overview",
+      "introduction",
+      "getting started",
+      "what is growchief",
+      "about",
+    ],
+  },
+  {
+    title: "How it works",
+    href: "/docs/how-it-works",
+    description:
+      "Architecture overview of GrowChief. Explains how frontend, backend, workers, queues, and databases interact within the system.",
+    tags: [
+      "how it works",
+      "architecture",
+      "system design",
+      "frontend",
+      "backend",
+      "workers",
+      "queue",
+      "temporal",
+      "database",
+      "postgres",
+      "redis",
+      "docker",
+    ],
+  },
+  {
+    title: "Quickstart",
+    href: "/docs/quickstart",
+    description:
+      "Step-by-step quickstart guide to install and run GrowChief using Docker.",
+    tags: [
+      "quickstart",
+      "getting started",
+      "installation",
+      "setup",
+      "docker",
+      "docker compose",
+      "git",
+      "environment",
+      "local development",
+    ],
+  },
+  {
+    title: "Support",
+    href: "/docs/support",
+    description:
+      "Support guide for GrowChief. Learn where to ask for help and how to effectively report issues when using the self-hosted version.",
+    tags: [
+      "support",
+      "help",
+      "community",
+      "discord",
+      "github",
+      "issues",
+      "self hosted",
+      "troubleshooting",
+      "getting help",
+    ],
+  },
+  {
+    title: "Developer Guide",
+    href: "/docs/developer-guide",
+    description:
+      "Guide for developers working with GrowChief. Covers environment setup, architecture overview, repository structure, and core services.",
+    tags: [
+      "developer guide",
+      "development",
+      "setup",
+      "architecture",
+      "repository",
+      "frontend",
+      "backend",
+      "nestjs",
+      "react",
+      "monorepo",
+      "nx",
+    ],
+  },
 ];
 
 export const SOCIAL_ICONS = [
@@ -54,7 +144,7 @@ export const FOOTER_SECTIONS = [
     title: "Resources",
     items: [
       { label: "Blog", href: "/blog" },
-      { label: "Docs", href: "/docs/introduction" },
+      { label: "Docs", href: "/docs" },
       { label: "Discord", href: links.discord },
       { label: "Postiz", href: "https://postiz.com" },
     ],

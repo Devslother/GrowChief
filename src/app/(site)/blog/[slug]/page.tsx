@@ -12,18 +12,21 @@ import { Related } from "@/components/blog/blocks/Related";
 import { MdxLoader } from "@/components/blog/MdxLoader";
 import { ShareSocial } from "@/components/blog/blocks/ShareSocial";
 import { AuthorData } from "@/components/blog/blocks/AuthorData";
+import { ExternalLinksHandler } from "@/components/docs/ExternalLinksHandler";
 
-export default async function ArticlePage(props: {
+export default async function ArticlePage({
+  params,
+}: {
   params: Promise<{ slug: string }>;
 }) {
-  const params = await props.params;
-  const { slug } = params;
+  const { slug } = await params;
 
   if (!slug) {
     notFound();
   }
+  const safeSlug = slug.trim().toLowerCase();
 
-  const post = await getBlogPost(slug);
+  const post = await getBlogPost(safeSlug);
 
   if (!post) {
     notFound();
@@ -58,8 +61,9 @@ export default async function ArticlePage(props: {
               <ShareSocial />
             </div>
             {/* article */}
-            <div className="w-full prose prose-invert max-w-none">
-              <MdxLoader slug={slug} />
+            <div className="w-full prose prose-invert max-w-none blog-prose">
+              <MdxLoader slug={safeSlug} />
+              <ExternalLinksHandler />
             </div>
 
             {/* date, social icons */}
@@ -75,7 +79,7 @@ export default async function ArticlePage(props: {
         </div>
         <Related
           articles={allArticles}
-          currentSlug={slug}
+          currentSlug={safeSlug}
           filterBy="tags"
           currentArticle={frontmatter}
         />

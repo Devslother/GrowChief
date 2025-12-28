@@ -1,0 +1,94 @@
+import { H2, H3, Divider, List, Item, P } from "@/components/docs/ui";
+
+<H2>Understand how to develop with GrowChief</H2>
+<Divider />
+
+<H2>How to setup your development environment</H2>
+<Divider />
+
+<P>
+  This page explains [How to setup your development environment.]
+  (https://docs.growchief.com/installation/development)
+</P>
+
+<H2>Architecture Overview</H2>
+<Divider />
+
+<P>
+  Before getting started with development, have a good read of the [architecture
+  overview.](/docs/how-it-works) This will give you a good understanding of how
+  the project is structured and how the different parts of the project interact
+  with each other.
+</P>
+
+<H2>Repository Overview</H2>
+<Divider />
+
+<P>
+  GrowChief is an open-source project, and the source code is available on
+  [GitHub.](https://github.com/gitroomhq/growchief-app)
+</P>
+
+<P>
+  The project is generally built using scripts in the package.json file with
+  npm. The main scripts are:
+</P>
+
+<List>
+  <Item>npm run dev - Starts the development server</Item>
+  <Item>npm run prisma-generate - Generates the Prisma client</Item>
+  <Item>
+    npm run prisma-db-push - Pushes the database schema to the database
+  </Item>
+</List>
+
+<P>
+  The entire project is built under [NX](https://nx.dev/) to have a monorepo
+  with multiple projects.
+</P>
+
+<P>
+  Unlike other NX project, this project has one .env file that is shared between
+  all the apps. It makes it easier to develop and deploy the project.
+</P>
+
+<H3>Frontend</H3>
+<P>
+  The frontend is built with React Router and
+  [TailwindCSS.](https://tailwindcss.com/)
+</P>
+
+<H3>Backend</H3>
+<P>
+  The backend is built with [NestJS](https://nestjs.com/) with a basic
+  architecture of controllers, services, repositories and dtos.
+</P>
+
+<P>
+  It uses [Prisma](https://www.prisma.io/) as an ORM to interact with the
+  database. By default Prisma uses [Postgres](https://www.postgresql.org/) as a
+  database, but it can be easily changed to any other database since there are
+  no native queries.
+</P>
+
+<P>It uses Redis to schedule posts and run background jobs.</P>
+
+<H3>Cron</H3>
+<P>
+  cron is built with [NestJS](https://nestjs.com/) and share components with the
+  backend.
+</P>
+
+<H3>Worker</H3>
+<P>
+  worker is built with [NestJS](https://nestjs.com/) and share components with
+  the backend.
+</P>
+
+<H2>Contributors Guide</H2>
+<Divider />
+<P>
+  The GrowChief [contributors guide](https://docs.growchief.com/contributing) is
+  contained in the main repository. It provides information on how to contribute
+  to the project, mainly the format for how to submit a pull request.
+</P>

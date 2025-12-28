@@ -6,17 +6,19 @@ import { Button } from "@/components/ui/Button";
 import { getAuthor, getAllBlogPostsWithAuthors } from "@/lib/blog";
 import { notFound } from "next/navigation";
 
-export default async function AuthorPage(props: {
+export default async function AuthorPage({
+  params,
+}: {
   params: Promise<{ slug: string }>;
 }) {
-  const params = await props.params;
-  const { slug } = params;
+  const { slug } = await params;
 
   if (!slug) {
     notFound();
   }
 
-  const author = await getAuthor(slug);
+  const safeSlug = slug.trim().toLowerCase();
+  const author = await getAuthor(safeSlug);
 
   if (!author) {
     notFound();
@@ -40,7 +42,7 @@ export default async function AuthorPage(props: {
           <div className="flex flex-col items-center w-200 mx-auto max-lg:w-full pb-[120px] gap-6 max-md:pb-20">
             <AuthorCard author={author} />
             <div className="w-full prose prose-invert">
-              <AuthorMdxLoader slug={slug} />
+              <AuthorMdxLoader slug={safeSlug} />
             </div>
           </div>
         </div>

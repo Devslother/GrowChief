@@ -9,7 +9,12 @@ interface ListProps {
 
 export const List: FC<ListProps> = ({ children, listClasses }) => {
   return (
-    <ul className={cn("list-disc pl-8 flex flex-col gap-[10px]", listClasses)}>
+    <ul
+      className={cn(
+        "list-disc mt-6 pl-8 flex flex-col gap-[10px]",
+        listClasses
+      )}
+    >
       {children}
     </ul>
   );

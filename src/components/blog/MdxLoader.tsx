@@ -1,74 +1,56 @@
-"use client";
-
-import dynamic from "next/dynamic";
 import type { ComponentType } from "react";
 
-interface MdxLoaderProps {
-  slug: string;
-}
+type MdxComponent = ComponentType<Record<string, unknown>>;
 
-interface AuthorMdxLoaderProps {
-  slug: string;
-}
+const blogPostImports = {
+  "marketing-workflow-management": () =>
+    import("@/components/content/blog/marketing-workflow-management.mdx"),
+  "postiz-is-on-product-hunt": () =>
+    import("@/components/content/blog/postiz-is-on-product-hunt.mdx"),
+  "postiz-v1-6-7-more-social-media-platforms": () =>
+    import(
+      "@/components/content/blog/postiz-v1-6-7-more-social-media-platforms.mdx"
+    ),
+} as const;
 
-// Создаем динамические компоненты статей блога заранее, вне функции рендера
-const blogPostComponents: Record<string, ComponentType> = {
-  "marketing-workflow-management": dynamic(
-    () => import("@/components/content/blog/marketing-workflow-management.mdx"),
-    {
-      ssr: false,
-      loading: () => <div>Loading content...</div>,
-    }
-  ),
-  "postiz-is-on-product-hunt": dynamic(
-    () => import("@/components/content/blog/postiz-is-on-product-hunt.mdx"),
-    {
-      ssr: false,
-      loading: () => <div>Loading content...</div>,
-    }
-  ),
-  "postiz-v1-6-7-more-social-media-platforms": dynamic(
-    () =>
-      import(
-        "@/components/content/blog/postiz-v1-6-7-more-social-media-platforms.mdx"
-      ),
-    {
-      ssr: false,
-      loading: () => <div>Loading content...</div>,
-    }
-  ),
-};
+const authorImports = {
+  david: () => import("@/components/content/author/david.mdx"),
+} as const;
 
-// Создаем динамические компоненты авторов заранее, вне функции рендера
-const authorComponents: Record<string, ComponentType> = {
-  david: dynamic(() => import("@/components/content/author/david.mdx"), {
-    ssr: false,
-    loading: () => <div>Loading content...</div>,
-  }),
-};
+const docsImports = {
+  "how-it-works": () => import("@/components/content/docs/how-it-works.mdx"),
+  quickstart: () => import("@/components/content/docs/quickstart.mdx"),
+  support: () => import("@/components/content/docs/support.mdx"),
+  "developer-guide": () =>
+    import("@/components/content/docs/developer-guide.mdx"),
+} as const;
 
-// Загружаем MDX контент статьи блога на клиенте
-export function MdxLoader({ slug }: MdxLoaderProps) {
-  const normalizedSlug = slug.toLowerCase();
-  const Component =
-    blogPostComponents[normalizedSlug] || blogPostComponents[slug];
+const normalizeSlug = (s: string) => s.trim().toLowerCase();
+const hasKey = <T extends Record<PropertyKey, unknown>>(
+  obj: T,
+  key: PropertyKey
+): key is keyof T => key in obj;
 
-  if (!Component) {
-    return <div>Article not found</div>;
-  }
-
+export async function MdxLoader({ slug }: { slug: string }) {
+  const key = normalizeSlug(slug);
+  if (!hasKey(blogPostImports, key)) return <div>Article not found</div>;
+  const mod = await blogPostImports[key]();
+  const Component = mod.default as MdxComponent;
   return <Component />;
 }
 
-// Загружаем MDX контент автора на клиенте
-export function AuthorMdxLoader({ slug }: AuthorMdxLoaderProps) {
-  // Нормализуем slug в нижний регистр (файлы MDX называются в нижнем регистре)
-  const normalizedSlug = slug.toLowerCase();
-  const Component = authorComponents[normalizedSlug];
+export async function AuthorMdxLoader({ slug }: { slug: string }) {
+  const key = normalizeSlug(slug);
+  if (!hasKey(authorImports, key)) return <div>Author not found</div>;
+  const mod = await authorImports[key]();
+  const Component = mod.default as MdxComponent;
+  return <Component />;
+}
 
-  if (!Component) {
-    return null;
-  }
-
+export async function DocsMdxLoader({ slug }: { slug: string }) {
+  const key = normalizeSlug(slug);
+  if (!hasKey(docsImports, key)) return <div>Document not found</div>;
+  const mod = await docsImports[key]();
+  const Component = mod.default as MdxComponent;
   return <Component />;
 }

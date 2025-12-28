@@ -5,7 +5,9 @@ import { copyFileSync, existsSync, mkdirSync } from "fs";
 import { join } from "path";
 
 const withMDX = createMDX({
-  // Add markdown plugins here, as desired
+  options: {
+    providerImportSource: undefined,
+  },
 });
 
 const nextConfig: NextConfig = {

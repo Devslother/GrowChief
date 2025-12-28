@@ -1,0 +1,48 @@
+import { H2, H3, Divider, List, Item, P } from "@/components/docs/ui";
+
+<H2>Architecture</H2>
+
+<Divider />
+
+<P>
+  GrowChief is composed of 3 main services and 2 external services - all 5 of
+  the main services typically run within a single docker container, and talk to
+  each other through HTTP. Those 4 main servers typically talk to other
+  containers, running the external services - the SQL Database, Redis Queue and
+  Storage.
+</P>
+
+<List>
+  <Item>
+    <b>Frontend – </b> Provides the Web user interface, talks to the Backend.
+  </Item>
+  <Item>
+    <b>Backend – </b> Does all the real work, provides an API for the frontend,
+    and posts work to the Temporal Service queue.
+  </Item>
+  <Item>
+    <b>Workers – </b> Consumes work from the Temporal Service.
+  </Item>
+  <Item>
+    <b>Temporal Service – </b> A simple queue for the workers to consume work
+    from.
+  </Item>
+  <Item>
+    <b>SQL Database – </b> Stores all the data, Postgres is typically used, but
+    any SQL database can be used.
+  </Item>
+</List>
+
+<H3>Frontend</H3>
+<P>
+  The frontend is the part that you see, the web interface made with React Vite.
+</P>
+
+<H3>Backend</H3>
+<P>
+  The backend is the "brain" of Grow, and coordinates all the work. Typically
+  the SQL database it talks to is Postgres, but other databases can be used.
+</P>
+
+<H3>Worker</H3>
+<P>The worker processes the queue and automates your social media accounts.</P>

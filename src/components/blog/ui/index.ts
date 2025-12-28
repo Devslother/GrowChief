@@ -1,4 +1,4 @@
-export { Anchor } from "./Anchor";
+export { CopyableCode } from "../../docs/ui/CopyableCode.server";
 export { Divider } from "./Divider";
 export { H2 } from "./H2";
 export { H3 } from "./H3";

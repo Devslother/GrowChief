@@ -48,6 +48,8 @@ html {
   /* Neutral Colors */
   --color-neutral-100: #000000;
   --color-neutral-80: #100f0f;
+  --color-neutral-60: #4a4a4a;
+  --color-neutral-50: #808080;
   --color-neutral-40: #d1d1d1;
   --color-neutral-10: #ffffff;
 
@@ -364,4 +366,33 @@ body {
 .faq-inner {
   background: #000;
   border-radius: 31px; /* на 1px меньше рамки */
+}
+
+/* Стили для ссылок */
+.prose a,
+.prose-invert a,
+div[role="paragraph"] a {
+  display: inline !important;
+  white-space: normal !important;
+  float: none !important;
+  clear: none !important;
+  vertical-align: baseline !important;
+  word-break: keep-all !important;
+  color: white;
+  text-decoration: underline;
+  font-size: 16px;
+}
+
+.prose a:hover,
+.prose-invert a:hover {
+  color: white;
+}
+
+/* Стили для ссылок в blog - цвет secondary-purple */
+.blog-prose a {
+  color: var(--color-secondary-purple) !important; /* #a657ff */
+}
+
+.blog-prose a:hover {
+  color: white !important;
 }

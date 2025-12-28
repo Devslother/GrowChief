@@ -39,3 +39,11 @@ export interface Author {
   avatar: string;
   description?: string;
 }
+
+// Docs types
+export interface DocsItem {
+  title: string;
+  href: string;
+  description?: string;
+  tags: string[] | string;
+}
