@@ -26,19 +26,19 @@ export default async function DocsPage({
   if (!currentDoc) notFound();
 
   return (
-    <div className="flex flex-row w-full mx-auto px-5 pt-5 max-lg:px-[30px] max-md:px-5 overflow-x-hidden">
+    <div className="flex flex-row w-full mx-auto px-5 pt-5 max-lg:px-[30px] max-md:px-5 overflow-x-hidden box-border">
       <aside className="w-64 shrink-0 max-lg:w-56 max-md:hidden">
         <ListNavItem navLinks={DOCS_NAV_ITEMS} pathname={pathname} />
       </aside>
 
-      <div className="flex flex-col px-5 flex-1 max-lg:px-0">
+      <div className="flex flex-col px-5 flex-1 max-md:px-2 min-w-0 box-border">
         <h2 className="text-sm mt-[6px]">{currentDoc.title}</h2>
-        <div className="w-full prose prose-invert max-w-none">
+        <div className="w-full prose prose-invert max-w-none min-w-0 box-border">
           <DocsMdxLoader slug={safeSlug} />
           <ExternalLinksHandler />
         </div>
 
-        <Divider classes="mt-[94px] mb-[54px" />
+        <Divider classes="mt-[94px] mb-[54px]" />
         <DocsNavigation />
       </div>
     </div>

@@ -16,7 +16,7 @@ export default function DocsPage() {
       <aside className="w-64 shrink-0 max-lg:w-56 max-md:hidden">
         <ListNavItem navLinks={DOCS_NAV_ITEMS} pathname={pathname} />
       </aside>
-      <div className="flex flex-col px-5 gap-6 flex-1 max-lg:px-0">
+      <div className="flex flex-col px-5 gap-6 flex-1 max-md:px-0">
         <h2 className="text-sm mt-[6px]">Introduction</h2>
         <LogoGrow />
         <h2 className="text-[32px] leading-[1.05] font-semibold mt-4">

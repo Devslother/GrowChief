@@ -11,6 +11,7 @@ interface DocsSearchProps {
   docs: DocsItem[];
   onSearchResults?: (results: DocsItem[]) => void;
   classes?: string;
+  onLinkClick?: () => void;
 }
 
 /**
@@ -20,6 +21,7 @@ export const DocsSearch = ({
   docs,
   onSearchResults,
   classes,
+  onLinkClick,
 }: DocsSearchProps) => {
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -110,11 +112,12 @@ export const DocsSearch = ({
         )}
       </div>
       {showResults && (
-        <div className="absolute top-[52px] right-0 w-[576px] max-h-[500px] overflow-y-auto rounded-2xl bg-neutral-80 border border-neutral-60 flex flex-col z-50 p-[10px] max-md:left-0 max-md:w-full max-md:h-[500px]">
+        <div className="absolute top-[52px] right-0 w-[576px] max-h-[500px] overflow-y-auto rounded-2xl bg-neutral-80 border border-neutral-60 flex flex-col z-[60] p-[10px] max-md:left-0 max-md:w-full max-md:h-[500px]">
           {filteredDocs.map((doc) => (
             <Link
               key={doc.href}
               href={doc.href}
+              onClick={onLinkClick}
               className="group px-2 py-3 transition-colors hover:bg-[rgba(166,87,255,0.20)]"
             >
               <h3 className="font-body-5 text-white mb-2 pb-2 pl-2 border-b border-neutral-60 group-hover:text-secondary-purple">
@@ -130,7 +133,7 @@ export const DocsSearch = ({
         </div>
       )}
       {showNoResults && (
-        <div className="absolute top-[52px] right-0 w-[576px] h-[120px] rounded-2xl bg-neutral-80 border border-neutral-60 flex items-center justify-center flex-shrink-0 z-50 max-md:left-0 max-md:w-full max-md:h-[500px]">
+        <div className="absolute top-[52px] right-0 w-[576px] h-[120px] rounded-2xl bg-neutral-80 border border-neutral-60 flex items-center justify-center flex-shrink-0 z-[60] max-md:left-0 max-md:w-full max-md:h-[500px]">
           <p className="text-sm text-neutral-40">No results found.</p>
         </div>
       )}

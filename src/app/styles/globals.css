@@ -364,6 +364,30 @@ body {
   border-radius: 31px; /* на 1px меньше рамки */
 }
 
+/* Стили для prose контейнера - без переноса текста (кроме ссылок) */
+.prose,
+.prose-invert {
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+@media (max-width: 767px) {
+  .prose,
+  .prose-invert {
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  /* Убеждаемся, что все элементы внутри prose правильно ограничены */
+  .prose *,
+  .prose-invert * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
 /* Стили для ссылок */
 .prose a,
 .prose-invert a,
@@ -373,7 +397,8 @@ div[role="paragraph"] a {
   float: none !important;
   clear: none !important;
   vertical-align: baseline !important;
-  word-break: keep-all !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
   color: white;
   text-decoration: underline;
   font-size: 16px;
@@ -391,4 +416,21 @@ div[role="paragraph"] a {
 
 .blog-prose a:hover {
   color: white !important;
+}
+
+/* Улучшение качества SVG иконок Discord и YouTube на мобильных устройствах */
+@media (max-width: 767px) {
+  /* Отключаем backdrop-filter для Discord и YouTube на мобильных, так как он вызывает размытие */
+  a[aria-label="Discord"] svg foreignObject,
+  a[aria-label="Youtube"] svg foreignObject {
+    display: none;
+  }
+
+  /* Улучшаем рендеринг только для Discord и YouTube */
+  a[aria-label="Discord"] svg,
+  a[aria-label="Youtube"] svg {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    shape-rendering: geometricPrecision;
+  }
 }

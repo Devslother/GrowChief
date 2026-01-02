@@ -55,7 +55,7 @@ export const DocsMobileDrawer = ({
         )}
       >
         <div className="flex flex-col items-start pt-[90px] px-5 gap-4">
-          <DocsSearch docs={docsList} classes="ml-4" />
+          <DocsSearch docs={docsList} classes="ml-4" onLinkClick={onClose} />
           <nav aria-label="Mobile">
             <ListNavItem
               navLinks={navLinks}
