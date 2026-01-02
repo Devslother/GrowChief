@@ -25,12 +25,12 @@ const Accordion = ({ items }: AccordionProps) => {
         return (
           <div key={index} className="relative">
             {/* Внешняя рамка: в закрытом и открытом состояниях одна и та же */}
-            <div className={cn("rounded-[30px] overflow-hidden", "faq-border")}>
+            <div className={cn("rounded-3xl overflow-hidden", "faq-border")}>
               {/* ВЕСЬ контент — один блок, он ВСЕГДА в DOM */}
               <div
                 onClick={() => toggle(index)}
                 className={cn(
-                  "relative cursor-pointer rounded-[30px] px-9 py-8",
+                  "relative cursor-pointer rounded-3xl px-9 py-8",
                   "max-lg:p-[30px]",
                   "max-md:px-6 max-md:py-[22px]",
                   "faq-inner",

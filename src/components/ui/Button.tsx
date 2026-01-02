@@ -73,6 +73,7 @@ export const Button = (props: ButtonProps) => {
     variant === "secondary-s" ||
     variant === "secondary-b";
 
+  //PRIMARY
   // сохраняю t между движениями primary
   const lastTRef = useRef(0);
 
@@ -128,6 +129,8 @@ export const Button = (props: ButtonProps) => {
     // primary НЕ возвращаем — тень фиксируется
     return;
   }
+
+  //SECONDARY
 
   // для secondary сохраняем базовую тень из css один раз
   const baseShadowRef = useRef<string | null>(null);

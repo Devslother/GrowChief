@@ -30,10 +30,10 @@ export const PricingCard = ({ card, billing }: PricingCardProps) => {
     <div className={cn("pricing-border", borderClass)}>
       <div className={cn("pricing-card", `pricing-card--${card.theme}`)}>
         {/* Заголовок */}
-        <h3 className="font-body-4 mb-4">{card.title}</h3>
+        <h3 className="font-body-4 mb-4 max-lg:mb-3">{card.title}</h3>
 
         {/* Цена */}
-        <div className="mb-[30px]">
+        <div className="mb-[30px] max-lg:mb-5">
           <div className="flex items-end gap-1">
             <AnimatePresence mode="wait">
               <motion.span
@@ -61,14 +61,17 @@ export const PricingCard = ({ card, billing }: PricingCardProps) => {
         </div>
 
         {/* Горизонтальная линия */}
-        <div className="w-full h-px bg-white/15 mb-[30px]"></div>
+        <div className="w-full h-px bg-white/15 mb-[30px] max-lg:mb-5"></div>
 
         {/* Список возможностей */}
-        <ul className="flex flex-col gap-3 mb-8">
+        <ul className="flex flex-col gap-3 mb-8 max-lg:gap-1.5 max-lg:mb-4">
           {card.details.map(({ Icon, description }) => (
-            <li key={description} className="flex items-start gap-3">
-              <Icon className="h-6 w-6" />
-              <p className="font-body-6">{description}</p>
+            <li
+              key={description}
+              className="flex items-start gap-3 max-lg:gap-2"
+            >
+              <Icon className="h-6 w-6 max-lg:h-5 max-lg:w-5 shrink-0" />
+              <p className="font-body-6 max-lg:text-sm">{description}</p>
             </li>
           ))}
         </ul>

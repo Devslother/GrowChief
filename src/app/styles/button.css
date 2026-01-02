@@ -52,3 +52,30 @@
     linear-gradient(68deg, #ffffff 0%, #bbd8ff 100%);
   box-shadow: -12px 0 20px -2px rgba(0, 140, 255, 0.4);
 }
+
+.btn_secondary:hover {
+  background: radial-gradient(
+      140% 120% at 22% 8%,
+      rgba(255, 255, 255, 0.42) 0%,
+      /* было 0.26 */ rgba(255, 255, 255, 0) 55%
+    ),
+    linear-gradient(68deg, #ffffff 0%, #f1e6ff 100% /* светлее чем #e8d4ff */);
+}
+
+.btn_secondary-s:hover {
+  background: radial-gradient(
+      180% 160% at 0% 50%,
+      rgba(255, 255, 255, 0.45) 0%,
+      rgba(255, 255, 255, 0) 65%
+    ),
+    linear-gradient(68deg, #fff7f0 0%, #ffd9be 100%);
+}
+
+.btn_secondary-b:hover {
+  background: radial-gradient(
+      140% 120% at 22% 8%,
+      rgba(255, 255, 255, 0.42) 0%,
+      rgba(255, 255, 255, 0) 55%
+    ),
+    linear-gradient(68deg, #ffffff 0%, #d6e8ff 100%);
+}

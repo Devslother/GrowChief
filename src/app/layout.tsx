@@ -13,6 +13,11 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "GrowChief — Grow Your Business",
   description: "Professional growth platform with valuable resources",
+  icons: {
+    icon: "/icons/favicon.svg",
+    shortcut: "/icons/favicon.svg",
+    apple: "/icons/favicon.svg",
+  },
 };
 
 export default function RootLayout({

@@ -12,7 +12,9 @@ const TabSwitch = ({ value, onChange }: TabSwitchProps) => {
       {/* двигающийся highlight */}
       <motion.div
         className="tab-switch__pill"
-        animate={{ translateX: value === "monthly" ? "0%" : "100%" }}
+        animate={{
+          left: value === "monthly" ? "4px" : "50%",
+        }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
       />
       <button

@@ -24,7 +24,7 @@ export const AuthorCard = ({ author, href }: AuthorCardProps) => {
   return (
     <div
       className={`author-card-border mx-auto w-200 max-lg:w-full ${
-        href ? "cursor-pointer hover:opacity-80" : ""
+        href ? "cursor-pointer" : ""
       }`}
       onClick={handleCardClick}
     >

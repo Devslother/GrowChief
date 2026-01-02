@@ -15,7 +15,7 @@ const Promo = () => {
           className="
             w-full 
             h-[437px] max-lg:h-[816px] max-md:h-[736px]
-            rounded-[32px]
+            rounded-3xl
             bg-cover bg-center bg-no-repeat
             bg-[url('/images/promo/promo-sm.png')] 
             md:bg-[url('/images/promo/promo-md.png')]

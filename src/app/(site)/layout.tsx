@@ -2,6 +2,7 @@
 import Header from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import CTA from "@/components/layout/CTA";
+import { SmoothAnchorScroll } from "@/components/layout/SmoothAnchorScroll";
 
 export default function SiteLayout({
   children,
@@ -11,6 +12,7 @@ export default function SiteLayout({
   return (
     <>
       <Header />
+      <SmoothAnchorScroll />
       <main className="pt-20 max-md:pt-16">{children}</main>
       <CTA />
       <Footer />

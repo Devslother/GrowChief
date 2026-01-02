@@ -20,14 +20,14 @@ const Features = () => {
               alt="Feature 1"
               width={717}
               height={400}
-              className="w-full h-auto rounded-[32px]"
+              className="w-full h-auto rounded-3xl"
             />
             <Image
               src="/images/features/desktop-2.png"
               alt="Feature 2"
               width={507}
               height={400}
-              className="w-full h-auto rounded-[32px]"
+              className="w-full h-auto rounded-3xl"
             />
           </div>
           {/* Второй ряд: узкий, широкий */}
@@ -37,14 +37,14 @@ const Features = () => {
               alt="Feature 3"
               width={507}
               height={400}
-              className="w-full h-auto rounded-[32px]"
+              className="w-full h-auto rounded-3xl"
             />
             <Image
               src="/images/features/desktop-4.png"
               alt="Feature 4"
               width={717}
               height={400}
-              className="w-full h-auto rounded-[32px]"
+              className="w-full h-auto rounded-3xl"
             />
           </div>
         </div>

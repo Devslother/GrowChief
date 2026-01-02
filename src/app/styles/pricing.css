@@ -6,9 +6,17 @@
   height: 500px;
   display: flex;
   flex-direction: column;
+  overflow: visible;
 }
 
-@media (width <= 1024px) {
+@media (width <= 1024px) and (width > 820px) {
+  .pricing-card {
+    padding: 16px;
+    height: 450px;
+  }
+}
+
+@media (width <= 820px) {
   .pricing-card {
     padding: 16px;
     height: 400px;
@@ -106,7 +114,6 @@
 .tab-switch {
   position: relative;
   display: flex;
-  gap: 6px;
   padding: 4px;
   border-radius: 48px;
   background: linear-gradient(
@@ -130,6 +137,7 @@
   width: calc(50% - 4px);
   height: calc(100% - 8px);
   border-radius: 9999px;
+  box-sizing: border-box;
 
   background: radial-gradient(
       180% 160% at 0% 50%,
@@ -140,19 +148,25 @@
 
   box-shadow: -12px 0px 28px 4px rgba(255, 105, 50, 0.35);
   z-index: 0;
+  pointer-events: none;
 }
 
 .tab-switch__item {
   position: relative;
   z-index: 1;
   flex: 1 1 0;
+  min-width: 0;
   border: none;
   background: transparent;
   color: #ffffffcc;
-  padding: 12px 32px;
+  padding: 12px 37px;
   border-radius: 9999px;
   cursor: pointer;
   transition: color 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
 /* тут меняется только цвет текста, не фон */

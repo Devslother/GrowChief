@@ -4,10 +4,6 @@
 @import "./pricing.css";
 @import "./blog.css";
 
-/* плавный скролл для всех якорных ссылок */
-html {
-  scroll-behavior: smooth;
-}
 /* высота фикс-хедера (адаптивная) */
 :root {
   --header-h: 80px; /* desktop, tablet */
