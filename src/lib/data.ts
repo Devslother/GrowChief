@@ -135,30 +135,6 @@ export const SOCIAL_ICONS = [
   },
 ];
 
-export const FOOTER_SECTIONS = [
-  {
-    title: "Tools",
-    items: [{ label: "API", href: "/docs/api" }],
-  },
-  {
-    title: "Resources",
-    items: [
-      { label: "Blog", href: "/blog" },
-      { label: "Docs", href: "/docs" },
-      { label: "Discord", href: links.discord },
-      { label: "Postiz", href: "https://postiz.com" },
-    ],
-  },
-  {
-    title: "Company",
-    items: [
-      { label: "Pricing", href: "/#pricing" },
-      { label: "Terms of service", href: "/terms-of-service" },
-      { label: "Privacy Policy", href: "/privacy-policy" },
-    ],
-  },
-];
-
 export const PRICING_CARDS: PricingCardType[] = [
   {
     title: "Normal",
