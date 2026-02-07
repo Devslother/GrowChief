@@ -62,6 +62,14 @@ const nextConfig: NextConfig = {
       "@": join(process.cwd(), "src"),
     };
 
+    // Улучшаем парсинг зависимостей для MDX loader
+    if (config.cache && typeof config.cache === "object") {
+      config.cache.buildDependencies = {
+        ...config.cache.buildDependencies,
+        config: [__filename],
+      };
+    }
+
     return config;
   },
 };

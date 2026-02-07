@@ -12,5 +12,9 @@
   "editor.suggest.snippetsPreventQuickSuggestions": false,
   "editor.wordBasedSuggestions": "off",
   "javascript.suggest.autoImports": true,
-  "javascript.updateImportsOnFileMove.enabled": "always"
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "cSpell.words": [
+    "frontmatter",
+    "gsap"
+  ]
 }

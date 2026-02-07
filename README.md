@@ -163,7 +163,7 @@ The project uses **Tailwind CSS 4** with a CSS-first approach. Theme configurati
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
 
-## 📝 Content Management
+## Content Management
 
 ### Documentation
 
