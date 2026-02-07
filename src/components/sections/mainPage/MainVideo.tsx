@@ -5,11 +5,16 @@ import { handleVideoResize } from "@/lib/handleVideoResize";
 
 const MainVideo = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [sourcesLoaded, setSourcesLoaded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
   // кнопка Play
   const handlePlay = () => {
     if (!videoRef.current) return;
+    if (!sourcesLoaded) {
+      setSourcesLoaded(true);
+      return;
+    }
     videoRef.current.play();
     setIsPlaying(true);
   };
@@ -19,6 +24,13 @@ const MainVideo = () => {
     const cleanup = handleVideoResize(videoRef.current);
     return cleanup;
   }, []);
+
+  useEffect(() => {
+    if (sourcesLoaded && videoRef.current && !isPlaying) {
+      videoRef.current.play();
+      setIsPlaying(true);
+    }
+  }, [sourcesLoaded, isPlaying]);
 
   return (
     <section className="layout-shell pt-8 pb-[100px] max-lg:pt-[18px] max-lg:pb-[68px] max-md:pt-5 max-md:pb-[60px]">
@@ -35,32 +47,36 @@ const MainVideo = () => {
           muted
           playsInline
           preload="none"
-          controls
+          controls={isPlaying}
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
         >
-          {/* Desktop */}
-          <source
-            media="(min-width: 768px)"
-            src="/videos/main/main-video.webm"
-            type="video/webm"
-          />
-          <source
-            media="(min-width: 768px)"
-            src="/videos/main/main-video.mp4"
-            type="video/mp4"
-          />
-          {/* Mobile */}
-          <source
-            media="(max-width: 767px)"
-            src="/videos/main/main-video-mobile.webm"
-            type="video/webm"
-          />
-          <source
-            media="(max-width: 767px)"
-            src="/videos/main/main-video-mobile.mp4"
-            type="video/mp4"
-          />
+          {sourcesLoaded && (
+            <>
+              {/* Desktop */}
+              <source
+                media="(min-width: 768px)"
+                src="/videos/main/main-video.webm"
+                type="video/webm"
+              />
+              <source
+                media="(min-width: 768px)"
+                src="/videos/main/main-video.mp4"
+                type="video/mp4"
+              />
+              {/* Mobile */}
+              <source
+                media="(max-width: 767px)"
+                src="/videos/main/main-video-mobile.webm"
+                type="video/webm"
+              />
+              <source
+                media="(max-width: 767px)"
+                src="/videos/main/main-video-mobile.mp4"
+                type="video/mp4"
+              />
+            </>
+          )}
           Ваш браузер не поддерживает video
         </video>
 

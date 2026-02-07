@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
   turbopack: {},
   images: {
     domains: [],
+    deviceSizes: [320, 360, 375, 390, 414, 425, 480, 640, 750, 828, 1080, 1200],
   },
   // Оптимизация для production
   compress: true,
