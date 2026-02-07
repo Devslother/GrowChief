@@ -37,17 +37,21 @@ const Accordion = ({ items }: AccordionProps) => {
                   "transition-colors duration-500 ease-out"
                 )}
               >
-                {/* Фоновая картинка: всегда в DOM, но плавно показываем/скрываем */}
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/images/faq-bg.png"
-                  alt=""
-                  className={cn(
-                    "pointer-events-none absolute inset-0 z-10 h-full w-full object-cover",
-                    "transition-opacity duration-500 ease-out",
-                    opened ? "opacity-100" : "opacity-0"
-                  )}
-                />
+                {/* Фоновая картинка: загружаем только при открытии */}
+                {opened && (
+                  <picture className="pointer-events-none absolute inset-0 z-10 h-full w-full">
+                    <source srcSet="/images/faq-bg.avif" type="image/avif" />
+                    <source srcSet="/images/faq-bg.webp" type="image/webp" />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/images/faq-bg.png"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full object-cover"
+                    />
+                  </picture>
+                )}
 
                 {/* Верх: вопрос + стрелка */}
                 <div className="relative z-10 flex items-center justify-between gap-4">

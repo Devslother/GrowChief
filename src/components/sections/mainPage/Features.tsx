@@ -88,6 +88,7 @@ const Features = () => {
             alt="Feature 1"
             width={335}
             height={420}
+            sizes="(max-width: 768px) 100vw, 335px"
             className="w-full h-auto rounded-3xl"
           />
           <Image
@@ -95,6 +96,7 @@ const Features = () => {
             alt="Feature 2"
             width={335}
             height={420}
+            sizes="(max-width: 768px) 100vw, 335px"
             className="w-full h-auto rounded-3xl"
           />
           <Image
@@ -102,6 +104,7 @@ const Features = () => {
             alt="Feature 3"
             width={335}
             height={420}
+            sizes="(max-width: 768px) 100vw, 335px"
             className="w-full h-auto rounded-3xl"
           />
           <Image
@@ -109,6 +112,7 @@ const Features = () => {
             alt="Feature 4"
             width={335}
             height={420}
+            sizes="(max-width: 768px) 100vw, 335px"
             className="w-full h-auto rounded-3xl"
           />
         </div>

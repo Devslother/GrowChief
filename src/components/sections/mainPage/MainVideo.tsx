@@ -34,7 +34,7 @@ const MainVideo = () => {
           className="h-full w-full object-contain"
           muted
           playsInline
-          preload="auto"
+          preload="none"
           controls
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}

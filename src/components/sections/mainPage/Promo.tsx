@@ -13,15 +13,64 @@ const Promo = () => {
       >
         <div
           className="
+            relative
             w-full 
             h-[437px] max-lg:h-[816px] max-md:h-[736px]
             rounded-3xl
             bg-cover bg-center bg-no-repeat
-            bg-[url('/images/promo/promo-sm.png')] 
-            md:bg-[url('/images/promo/promo-md.png')]
-            lg:bg-[url('/images/promo/promo-lg.png')]
+            overflow-hidden
           "
         >
+          <picture className="absolute inset-0 h-full w-full">
+            <source
+              media="(min-width: 1024px)"
+              srcSet="/images/promo/promo-lg.avif"
+              type="image/avif"
+            />
+            <source
+              media="(min-width: 1024px)"
+              srcSet="/images/promo/promo-lg.webp"
+              type="image/webp"
+            />
+            <source
+              media="(min-width: 1024px)"
+              srcSet="/images/promo/promo-lg.png"
+              type="image/png"
+            />
+            <source
+              media="(min-width: 768px)"
+              srcSet="/images/promo/promo-md.avif"
+              type="image/avif"
+            />
+            <source
+              media="(min-width: 768px)"
+              srcSet="/images/promo/promo-md.webp"
+              type="image/webp"
+            />
+            <source
+              media="(min-width: 768px)"
+              srcSet="/images/promo/promo-md.png"
+              type="image/png"
+            />
+            <source
+              media="(max-width: 767px)"
+              srcSet="/images/promo/promo-sm.avif"
+              type="image/avif"
+            />
+            <source
+              media="(max-width: 767px)"
+              srcSet="/images/promo/promo-sm.webp"
+              type="image/webp"
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/promo/promo-sm.png"
+              alt=""
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-cover"
+            />
+          </picture>
           {/* контент — поверх фона */}
           <div className="relative flex flex-col z-10 h-full items-start py-[45px] px-[50px] max-lg:px-10 max-md:py-[30px] max-md:px-6 gap-11">
             <div className="flex flex-col gap-6">
