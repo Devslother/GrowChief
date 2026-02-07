@@ -5,17 +5,21 @@ import { handleVideoResize } from "@/lib/handleVideoResize";
 
 const MainVideo = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const [sourcesLoaded, setSourcesLoaded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [autoplayBlocked, setAutoplayBlocked] = useState(false);
 
-  // кнопка Play
+  // ручной старт (fallback)
   const handlePlay = () => {
     if (!videoRef.current) return;
     if (!sourcesLoaded) {
       setSourcesLoaded(true);
       return;
     }
-    videoRef.current.play();
+    videoRef.current.play().catch(() => {
+      setAutoplayBlocked(true);
+    });
     setIsPlaying(true);
   };
 
@@ -25,16 +29,38 @@ const MainVideo = () => {
     return cleanup;
   }, []);
 
+  // lazy-load источников и autoplay, когда секция появляется во вьюпорте
   useEffect(() => {
-    if (sourcesLoaded && videoRef.current && !isPlaying) {
-      videoRef.current.play();
-      setIsPlaying(true);
-    }
-  }, [sourcesLoaded, isPlaying]);
+    if (!containerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry || !entry.isIntersecting) return;
+
+        setSourcesLoaded(true);
+        observer.disconnect();
+      },
+      { rootMargin: "200px 0px", threshold: 0.2 }
+    );
+
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // автозапуск после загрузки источников
+  useEffect(() => {
+    if (!sourcesLoaded || !videoRef.current) return;
+    videoRef.current
+      .play()
+      .then(() => setIsPlaying(true))
+      .catch(() => setAutoplayBlocked(true));
+  }, [sourcesLoaded]);
 
   return (
     <section className="layout-shell pt-8 pb-[100px] max-lg:pt-[18px] max-lg:pb-[68px] max-md:pt-5 max-md:pb-[60px]">
       <div
+        ref={containerRef}
         className="
           relative mx-auto w-full max-w-[1120px] rounded-[28px] overflow-hidden
           aspect-[16/9]  
@@ -80,8 +106,8 @@ const MainVideo = () => {
           Ваш браузер не поддерживает video
         </video>
 
-        {/* Оверлейная кнопка Play */}
-        {!isPlaying && (
+        {/* Fallback: если autoplay заблокирован */}
+        {!isPlaying && autoplayBlocked && (
           <button
             type="button"
             onClick={handlePlay}
