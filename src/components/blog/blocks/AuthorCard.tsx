@@ -29,7 +29,6 @@ export const AuthorCard = ({ author, href }: AuthorCardProps) => {
       onClick={handleCardClick}
     >
       <div className="flex flex-row items-center justify-between gap-[38px] rounded-4xl bg-neutral-80 px-9 py-[42px] max-md:flex-col max-md:gap-5 max-md:px-5 max-md:py-8">
-        {/* аватар */}
         <div className="shrink-0">
           <Image
             src={author.avatar}
@@ -40,7 +39,6 @@ export const AuthorCard = ({ author, href }: AuthorCardProps) => {
           />
         </div>
 
-        {/* текст + соцсети */}
         <div className="flex w-full flex-col gap-2">
           <div className="flex w-full flex-row items-center gap-2 max-md:flex-col">
             <h3 className="font-headline-4 text-left max-md:text-center">

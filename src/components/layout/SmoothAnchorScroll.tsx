@@ -19,7 +19,7 @@ export function SmoothAnchorScroll() {
       const id = hash.replace(/^#/, "");
       if (!id) return;
 
-      // иногда секция ещё не в DOM — даём 2 кадра
+      // sometimes section is not yet in DOM — give 2 frames
       requestAnimationFrame(() => {
         requestAnimationFrame(() => smoothScrollToId(id));
       });
@@ -43,22 +43,22 @@ export function SmoothAnchorScroll() {
       const id = hash.slice(1);
       if (!id) return;
 
-      // если мы НЕ на главной, а ссылка "/#id" — сначала перейти на "/"
+      // if we're NOT on home page, and link is "/#id" — first go to "/"
       if (isHomeHash && pathname !== "/") {
         router.push(`/${hash}`);
         handleHash(hash);
         return;
       }
 
-      // мы уже на главной (или ссылка "#id"): обновим URL и плавно проскроллим
+      // we're already on home (or link is "#id"): update URL and smooth scroll
       history.replaceState(null, "", hash);
       handleHash(hash);
     };
 
-    // важно: capture = true, чтобы перехватить до next/link
+    // important: capture = true to intercept before next/link
     document.addEventListener("click", onClickCapture, true);
 
-    // если открыли страницу сразу с хешем — тоже плавно скроллим
+    // if page opened with hash — also smooth scroll
     if (window.location.hash) {
       handleHash(window.location.hash);
     }

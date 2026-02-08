@@ -11,8 +11,8 @@ interface ListNavItemProps {
 }
 
 /**
- * Компонент списка навигации для документации
- * Используется в DocsMobileDrawer и на страницах документации
+ * Navigation list component for documentation
+ * Used in DocsMobileDrawer and on documentation pages
  */
 export const ListNavItem = ({
   navLinks,
@@ -20,7 +20,7 @@ export const ListNavItem = ({
   onClose,
   classes = "text-sm text-neutral-40",
 }: ListNavItemProps) => {
-  // Нормализуем pathname - убираем trailing slash для корректного сравнения
+  // Normalize pathname - remove trailing slash for correct comparison
   const normalizePath = (path: string) => path.replace(/\/$/, "");
 
   return (
@@ -43,8 +43,8 @@ export const ListNavItem = ({
               handleClose={onClose}
               classes={cn(
                 classes,
-                // Переопределяем стили для docs: активная и hover - secondary-purple
-                // Используем ! для переопределения базовых стилей из CustomLink
+                // Override styles for docs: active and hover - secondary-purple
+                // Use ! to override base styles from CustomLink
                 isActive
                   ? "!text-secondary-purple font-semibold !hover:text-secondary-purple"
                   : "!text-white group-hover:!text-secondary-purple hover:!text-secondary-purple"

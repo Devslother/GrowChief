@@ -262,8 +262,8 @@ export const FAQ_ITEMS = [
 ];
 
 /**
- * Данные авторов
- * Хранятся отдельно от MDX файлов, чтобы frontmatter не отображался в контенте
+ * Author data
+ * Stored separately from MDX files so frontmatter doesn't appear in content
  */
 export const authorsData: Record<string, AuthorFrontmatter> = {
   david: {
@@ -274,8 +274,8 @@ export const authorsData: Record<string, AuthorFrontmatter> = {
 };
 
 /**
- * Данные статей блога (frontmatter)
- * Хранятся отдельно от MDX файлов, чтобы frontmatter не отображался в контенте
+ * Blog post data (frontmatter)
+ * Stored separately from MDX files so frontmatter doesn't appear in content
  */
 export const blogPostsData: Record<string, BlogPostFrontmatter> = {
   "marketing-workflow-management": {

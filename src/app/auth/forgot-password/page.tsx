@@ -9,9 +9,9 @@ export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
 
-  // показываю ли экран "письмо отправлено"
+  // whether to show "email sent" screen
   const [submitted, setSubmitted] = useState(false);
-  // показываю ли баннер сверху
+  // whether to show top banner
   const [showBanner, setShowBanner] = useState(false);
 
   const onSubmit = async (e: React.FormEvent) => {
@@ -43,12 +43,12 @@ export default function ForgotPasswordPage() {
         return;
       }
 
-      setSubmitted(true); // переключаю контент
-      setShowBanner(true); // показываю баннер
+      setSubmitted(true); // switch content
+      setShowBanner(true); // show banner
 
       setTimeout(() => {
         setShowBanner(false);
-      }, 4000); // убираю баннер через 4 сек
+      }, 4000); // remove banner after 4 sec
     } catch (error) {
       console.error("❌ Forgot password error:", error);
       setEmailError("Something went wrong. Please try again.");
@@ -63,10 +63,8 @@ export default function ForgotPasswordPage() {
 
   return (
     <main className="w-full px-4 flex flex-col items-center">
-      {/* баннер сверху */}
       {showBanner && (
         <div className="my-10 flex items-center gap-3 w-full max-w-[500px] rounded-md bg-gray-600 p-4 text-base font-sans-serif font-bold text-white">
-          {/* Иконка */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-5 h-5"
@@ -96,7 +94,6 @@ export default function ForgotPasswordPage() {
           Enter your email address and we&apos;ll send you a link to reset your
           password.
         </p>
-        {/* если еще не отправляли форму */}
         {!submitted && (
           <form
             onSubmit={onSubmit}
@@ -108,13 +105,12 @@ export default function ForgotPasswordPage() {
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
-                setEmailError(""); // очищаю ошибку
+                setEmailError(""); // clear error
               }}
               error={emailError}
               placeholder="m@example.com"
             />
 
-            {/* Submit */}
             <button
               type="submit"
               className="mt-2 w-full flex items-center justify-center px-4 py-2 rounded-md bg-secondary-purple text-white font-sans-serif text-sm font-bold"
@@ -124,7 +120,7 @@ export default function ForgotPasswordPage() {
           </form>
         )}
 
-        {/* экран после отправки */}
+        {/* screen after submission */}
         {submitted && (
           <div className="flex flex-col p-6 gap-4 border-[1px] border-[#3A3A3A] rounded-[12px]">
             <h2 className="font-sans-serif text-lg font-bold">

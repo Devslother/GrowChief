@@ -35,20 +35,20 @@ export default function LoginForm() {
 
     if (!isValid) return;
 
-    // Контролируемая авторизация NextAuth без авто-редиректа
+    // Controlled NextAuth authentication without auto-redirect
     const res = await signIn("credentials", {
       email,
       password,
-      redirect: false, // важный параметр
+      redirect: false, // important parameter
     });
 
-    // Если ошибка от next-auth → показываю её в UI
+    // If error from next-auth → show it in UI
     if (res?.error) {
       setPassError("Invalid email or password");
       return;
     }
 
-    // Если авторизация прошла успешно → делаю redirect вручную
+    // If authentication successful → redirect manually
     window.location.href = "/";
   };
 
@@ -60,7 +60,6 @@ export default function LoginForm() {
 
   return (
     <form onSubmit={onSubmit} className="flex flex-col px-5 pb-5 gap-6">
-      {/* Google button */}
       <button
         type="button"
         onClick={handleGoogleSignIn}
@@ -72,20 +71,18 @@ export default function LoginForm() {
         </span>
       </button>
 
-      {/* Email */}
       <AuthInput
         label="Email"
         type="email"
         value={email}
         onChange={(e) => {
           setEmail(e.target.value);
-          setEmailError(""); // очищаю ошибку
+          setEmailError(""); // clear error
         }}
         error={emailError}
         placeholder="m@example.com"
       />
 
-      {/* Password + forgot */}
       <div className="flex flex-col gap-1">
         <div className="flex justify-between items-center">
           <label className="text-sm text-white font-bold">Password</label>
@@ -104,13 +101,12 @@ export default function LoginForm() {
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
-            setPassError(""); // очищаю ошибку
+            setPassError(""); // clear error
           }}
           error={passError}
         />
       </div>
 
-      {/* Submit */}
       <button
         type="submit"
         className="mt-2 w-full flex items-center justify-center px-[18px] py-[10px] rounded-md bg-secondary-purple text-white font-sans-serif text-sm font-bold"

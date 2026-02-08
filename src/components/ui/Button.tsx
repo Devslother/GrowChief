@@ -73,13 +73,9 @@ export const Button = (props: ButtonProps) => {
     variant === "secondary-s" ||
     variant === "secondary-b";
 
-  //PRIMARY
-  // сохраняю t между движениями primary
   const lastTRef = useRef(0);
 
-  // базовые X для тени слева
   const LEFT_X = [-32, -4, -66, -100];
-  // зеркальные X справа
   const RIGHT_X = [32, 4, 66, 100];
 
   const BLUR = [54, 12, 66, 44];
@@ -126,13 +122,9 @@ export const Button = (props: ButtonProps) => {
   }
 
   function onLeavePrimary() {
-    // primary НЕ возвращаем — тень фиксируется
     return;
   }
 
-  //SECONDARY
-
-  // для secondary сохраняем базовую тень из css один раз
   const baseShadowRef = useRef<string | null>(null);
 
   function onEnterSecondary() {
@@ -192,7 +184,7 @@ export const Button = (props: ButtonProps) => {
           onMouseMove: onMoveSecondary,
           onMouseLeave: onLeaveSecondary,
         }
-      : {}; // tertiary + link без gsap
+      : {};
 
   if (element === "a" && "href" in props && props.href) {
     const { href, isExternal, ...anchorProps } = props;

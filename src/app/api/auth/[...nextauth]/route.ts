@@ -3,7 +3,7 @@ import { authOptions } from "@/lib/auth";
 
 const handler = NextAuth(authOptions);
 
-// App Router export с обработкой ошибок
+// App Router export with error handling
 export async function GET(
   req: Request,
   context: { params: Promise<{ nextauth: string[] }> }

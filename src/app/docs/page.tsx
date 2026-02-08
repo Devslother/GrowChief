@@ -20,11 +20,11 @@ export default function DocsPage() {
         <h2 className="text-sm mt-[6px]">Introduction</h2>
         <LogoGrow />
         <h2 className="text-[32px] leading-[1.05] font-semibold mt-4">
-          What is Grow?
+          What is GrowChief?
         </h2>
         <Divider classes="my-0" />
         <p className="text-[16px] font-normal">
-          Grow helps you to automate all your social media accounts.
+          GrowChief helps you to automate all your social media accounts.
         </p>
         <div className="flex flex-row gap-4 pb-10 max-lg:flex-col">
           <Link

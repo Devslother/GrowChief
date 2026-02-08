@@ -9,11 +9,8 @@ import { cn } from "@/lib/utils";
 const CTA = () => {
   return (
     <section className="layout-shell pt-9 pb-[72px] max-lg:pt-[30px]">
-      {/* градиентная рамка через вложенный блок с p-[1px] */}
       <div className="relative mx-auto w-full max-w-[1120px] rounded-[32px] p-px bg-linear-to-br from-[#FF8A3D] via-neutral-100 to-[#2BB0FF]">
-        {/* внутренний контейнер с фоном и контентом */}
         <div className="relative overflow-hidden rounded-[32px] py-[88px] text-center max-md:px-6 max-md:pt-[72px] max-md:pb-[88px]">
-          {/* фоновая картинка */}
           <Image
             src="/images/main-bg.png"
             alt=""
@@ -25,7 +22,6 @@ const CTA = () => {
             priority={false}
           />
 
-          {/* контент поверх фона */}
           <div className="relative z-10 flex flex-col items-center gap-11">
             <SpyEye />
             <h2 className="cta-headline text-balance">

@@ -62,7 +62,7 @@ const Promo = () => {
               srcSet="/images/promo/promo-sm.webp"
               type="image/webp"
             />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
+            { }
             <img
               src="/images/promo/promo-sm.png"
               alt=""
@@ -71,7 +71,6 @@ const Promo = () => {
               className="h-full w-full object-cover"
             />
           </picture>
-          {/* контент — поверх фона */}
           <div className="relative flex flex-col z-10 h-full items-start py-[45px] px-[50px] max-lg:px-10 max-md:py-[30px] max-md:px-6 gap-11">
             <div className="flex flex-col gap-6">
               <p className="font-body-1">
@@ -87,7 +86,6 @@ const Promo = () => {
                 generate leads, and grow your business.
               </p>
             </div>
-            {/* псевдо-кнопка, просто див со стилями кнопки */}
             <div className="btn_secondary py-[18px] px-8 leading-none font-button-1 text-black rounded-full">
               Try Postiz for free
             </div>

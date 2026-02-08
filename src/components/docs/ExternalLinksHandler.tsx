@@ -3,12 +3,12 @@
 import { useEffect } from "react";
 
 /**
- * Компонент для автоматического добавления target="_blank" к внешним ссылкам в docs
- * Работает только на клиенте
+ * Component for automatically adding target="_blank" to external links in docs
+ * Works only on client
  */
 export function ExternalLinksHandler() {
   useEffect(() => {
-    // Находим все ссылки в prose контейнере
+    // Find all links in prose container
     const proseContainer = document.querySelector(".prose, .prose-invert");
     if (!proseContainer) return;
 
@@ -16,7 +16,7 @@ export function ExternalLinksHandler() {
       proseContainer.querySelectorAll<HTMLAnchorElement>("a[href^='http']");
 
     links.forEach((link) => {
-      // Проверяем, что ссылка внешняя (начинается с http)
+      // Check that link is external (starts with http)
       if (
         link.href.startsWith("http") &&
         !link.href.startsWith(window.location.origin)

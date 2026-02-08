@@ -7,16 +7,16 @@ import Back from "@/components/icons/back.svg";
 import { DOCS_NAV_ITEMS } from "@/lib/data";
 
 /**
- * Компонент навигации между страницами документации
- * Используется на всех страницах документации для перехода к предыдущей/следующей странице
- * Автоматически определяет текущую страницу и находит соседние
+ * Navigation component between documentation pages
+ * Used on all documentation pages to navigate to previous/next page
+ * Automatically determines current page and finds neighbors
  */
 export const DocsNavigation = () => {
   const pathname = usePathname();
 
-  // Находим текущую страницу и соседние
+  // Find current page and neighbors
   const { previousPage, nextPage } = useMemo(() => {
-    // Нормализует путь - убирает trailing slash
+    // Normalize path - remove trailing slash
     const normalize = (p: string) => p.replace(/\/$/, "");
     const index = DOCS_NAV_ITEMS.findIndex(
       (item) => normalize(item.href) === normalize(pathname)

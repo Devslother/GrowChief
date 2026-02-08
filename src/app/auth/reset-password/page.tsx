@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState, Suspense } from "react";
 
-// Отключаем статическую генерацию - страница должна рендериться динамически
+// Disable static generation - page should render dynamically
 export const dynamic = "force-dynamic";
 
 export default function ResetPasswordPage() {
@@ -29,7 +29,7 @@ function ResetPasswordForm() {
   const [success, setSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Проверяю токен и показываю ошибку, если его нет
+  // Check token and show error if missing
   if (!token) {
     return (
       <main className="w-full px-4 flex items-center">
@@ -154,33 +154,30 @@ function ResetPasswordForm() {
           onSubmit={submit}
           className="flex flex-col p-5 gap-6 border-[1px] border-[#3A3A3A] rounded-[12px]"
         >
-          {/* Password */}
           <AuthInput
             label="Password"
             type="password"
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
-              setError(""); // Очищаем ошибку при вводе
+              setError(""); // Clear error on input
             }}
             error={error}
             placeholder="New password"
           />
 
-          {/* Password repeat */}
           <AuthInput
             label="Password repeat"
             type="password"
             value={confirm}
             onChange={(e) => {
               setConfirm(e.target.value);
-              setError(""); // Очищаем ошибку при вводе
+              setError(""); // Clear error on input
             }}
             error={error}
             placeholder="Repeat password"
           />
 
-          {/* Submit */}
           <button
             type="submit"
             disabled={isLoading}

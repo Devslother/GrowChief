@@ -18,7 +18,7 @@ export default function RegisterForm() {
   const [confirmPassError, setConfirmPassError] = useState("");
   const [companyNameError, setCompanyNameError] = useState("");
 
-  // показываю ли экран "письмо отправлено"
+  // whether to show "email sent" screen
   const [submitted, setSubmitted] = useState(false);
 
   const onSubmit = async (e: React.FormEvent) => {
@@ -56,7 +56,7 @@ export default function RegisterForm() {
 
     if (!isValid) return;
 
-    // Регистрация пользователя
+    // User registration
     try {
       const res = await fetch("/api/auth/register", {
         method: "POST",
@@ -75,7 +75,7 @@ export default function RegisterForm() {
         return;
       }
 
-      // Если всё прошло успешно → автоматически логиним пользователя
+      // If everything successful → automatically log in user
       const signInRes = await signIn("credentials", {
         email,
         password,
@@ -83,10 +83,10 @@ export default function RegisterForm() {
       });
 
       if (signInRes?.error) {
-        // Если автологин не удался, показываем сообщение об успешной регистрации
+        // If auto-login failed, show successful registration message
         setSubmitted(true);
       } else {
-        // Если автологин успешен → редирект на главную
+        // If auto-login successful → redirect to home
         window.location.href = "/";
       }
     } catch (error) {
@@ -96,18 +96,16 @@ export default function RegisterForm() {
   };
 
   const handleGoogleSignIn = () => {
-    // провайдер "google" будет в конфиге next-auth
+    // "google" provider will be in next-auth config
     signIn("google", {
-      callbackUrl: "/", // или "/dashboard"
+      callbackUrl: "/", // or "/dashboard"
     });
   };
 
   return (
     <>
-      {/* если еще не отправляли форму */}
       {!submitted && (
         <form onSubmit={onSubmit} className="flex flex-col px-5 pb-5 gap-6">
-          {/* Google button */}
           <button
             type="button"
             onClick={handleGoogleSignIn}
@@ -119,57 +117,52 @@ export default function RegisterForm() {
             </span>
           </button>
 
-          {/* Email */}
           <AuthInput
             label="Email"
             type="email"
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
-              setEmailError(""); // очищаю ошибку
+              setEmailError(""); // clear error
             }}
             error={emailError}
             placeholder="m@example.com"
           />
 
-          {/* Password */}
           <AuthInput
             label="Password"
             type="password"
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
-              setPassError(""); // очищаю ошибку
+              setPassError(""); // clear error
             }}
             error={passError}
           />
 
-          {/* Confirm Password */}
           <AuthInput
             label="Confirm Password"
             type="password"
             value={confirmPassword}
             onChange={(e) => {
               setConfirmPassword(e.target.value);
-              setConfirmPassError(""); // очищаю ошибку
+              setConfirmPassError(""); // clear error
             }}
             error={confirmPassError}
           />
 
-          {/* Company Name */}
           <AuthInput
             label="Company"
             type="text"
             value={companyName}
             onChange={(e) => {
               setCompanyName(e.target.value);
-              setCompanyNameError(""); // очищаю ошибку
+              setCompanyNameError(""); // clear error
             }}
             error={companyNameError}
             placeholder="Your company name"
           />
 
-          {/* Submit */}
           <button
             type="submit"
             className="mt-2 w-full flex items-center justify-center px-[18px] py-[10px] rounded-md bg-secondary-purple text-white font-sans-serif text-sm font-bold"
@@ -178,7 +171,6 @@ export default function RegisterForm() {
           </button>
         </form>
       )}
-      {/* если уже отправляли форму */}
       {submitted && (
         <div className="flex flex-col gap-6 text-center">
           <div className="flex flex-col gap-4 bg-transparent border border-[#3A3A3A] rounded-md p-6">

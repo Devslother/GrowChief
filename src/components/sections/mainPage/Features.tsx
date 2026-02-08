@@ -11,9 +11,7 @@ const Features = () => {
           You&apos;re always
           <br className="md:hidden" /> in control
         </h2>
-        {/* Desktop: 2x2 grid */}
         <div className="max-lg:hidden flex flex-col gap-4">
-          {/* Первый ряд: широкий, узкий */}
           <div className="lg:grid lg:grid-cols-[1.414fr_1fr] lg:gap-4">
             <Image
               src="/images/features/desktop-1.png"
@@ -30,7 +28,6 @@ const Features = () => {
               className="w-full h-auto rounded-3xl"
             />
           </div>
-          {/* Второй ряд: узкий, широкий */}
           <div className="lg:grid lg:grid-cols-[1fr_1.414fr] lg:gap-4">
             <Image
               src="/images/features/desktop-3.png"
@@ -49,7 +46,6 @@ const Features = () => {
           </div>
         </div>
 
-        {/* Tablet: flex-col */}
         <div className="hidden md:flex lg:hidden flex-col gap-4">
           <Image
             src="/images/features/tablet-1.png"
@@ -81,7 +77,6 @@ const Features = () => {
           />
         </div>
 
-        {/* Mobile: flex-col */}
         <div className="flex md:hidden flex-col gap-4">
           <Image
             src="/images/features/mobile-1.png"

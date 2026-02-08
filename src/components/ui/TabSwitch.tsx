@@ -9,7 +9,6 @@ interface TabSwitchProps {
 const TabSwitch = ({ value, onChange }: TabSwitchProps) => {
   return (
     <div className="tab-switch">
-      {/* двигающийся highlight */}
       <motion.div
         className="tab-switch__pill"
         animate={{

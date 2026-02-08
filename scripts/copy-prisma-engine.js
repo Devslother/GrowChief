@@ -1,13 +1,13 @@
 const fs = require("fs");
 const path = require("path");
 
-// Копируем Prisma Query Engine для Netlify в несколько мест
+// Copy Prisma Query Engine for Netlify to multiple locations
 const enginePath = path.join(
   __dirname,
   "../src/generated/prisma/libquery_engine-rhel-openssl-3.0.x.so.node"
 );
 
-// Проверяем альтернативные пути, где может быть engine
+// Check alternative paths where engine might be
 const possibleEnginePaths = [
   enginePath,
   path.join(
@@ -32,14 +32,14 @@ for (const possiblePath of possibleEnginePaths) {
 if (!foundEnginePath) {
   console.warn("⚠️  Prisma Query Engine not found. Searched paths:");
   possibleEnginePaths.forEach((p) => console.warn(`   - ${p}`));
-  process.exit(0); // Не падаем, если engine не найден (может быть в другом месте)
+  process.exit(0); // Don't fail if engine not found (might be elsewhere)
 }
 
 const copyTargets = [
   path.join(__dirname, "../.next/server/chunks"),
   path.join(__dirname, "../.next/server"),
   path.join(__dirname, "../src/generated/prisma"),
-  path.join(__dirname, "../.next/standalone/.next/server/chunks"), // Для standalone сборки
+  path.join(__dirname, "../.next/standalone/.next/server/chunks"), // For standalone build
 ];
 
 copyTargets.forEach((targetPath) => {

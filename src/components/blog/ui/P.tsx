@@ -7,8 +7,8 @@ interface Props {
 }
 
 export const P: FC<Props> = ({ children, classes }) => {
-  // Используем div с role="paragraph" вместо p, чтобы избежать вложенных <p> тегов в MDX
-  // MDX автоматически оборачивает текст в <p> теги, что создает вложенность при использовании компонента <P>
+  // Use div with role="paragraph" instead of p to avoid nested <p> tags in MDX
+  // MDX automatically wraps text in <p> tags, which creates nesting when using the <P> component
   return (
     <div className={cn("my-5 text-lg", classes)} role="paragraph">
       {children}

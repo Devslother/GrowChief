@@ -15,7 +15,7 @@ interface DocsSearchProps {
 }
 
 /**
- * Компонент поиска документации по tags
+ * Documentation search component by tags
  */
 export const DocsSearch = ({
   docs,
@@ -25,14 +25,14 @@ export const DocsSearch = ({
 }: DocsSearchProps) => {
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Нормализует tags - преобразует строку или массив в массив строк
+  // Normalizes tags - converts string or array to array of strings
   const normalizeTags = (tags: string[] | string | undefined): string[] => {
     if (!tags) return [];
     if (Array.isArray(tags)) return tags.map((t) => t.toLowerCase());
     return [tags.toLowerCase()];
   };
 
-  // Фильтрация документов по поисковому запросу
+  // Filter documents by search query
   const filteredDocs = useMemo(() => {
     if (!searchQuery.trim()) {
       return docs;
@@ -43,10 +43,10 @@ export const DocsSearch = ({
     return docs.filter((doc) => {
       const tags = normalizeTags(doc.tags);
 
-      // Поиск по tags
+      // Search by tags
       const matchesTags = tags.some((tag) => tag.includes(query));
 
-      // Также можно искать по title и description
+      // Also search by title and description
       const matchesTitle = doc.title.toLowerCase().includes(query);
       const matchesDescription =
         doc.description?.toLowerCase().includes(query) || false;
@@ -55,12 +55,12 @@ export const DocsSearch = ({
     });
   }, [docs, searchQuery]);
 
-  // Вызываем callback с результатами поиска
+  // Call callback with search results
   useEffect(() => {
     onSearchResults?.(filteredDocs);
   }, [filteredDocs, onSearchResults]);
 
-  // Функция для выделения совпадающих частей текста
+  // Function to highlight matching parts of text
   const highlightText = (text: string, query: string) => {
     if (!query.trim()) return text;
 
@@ -71,7 +71,7 @@ export const DocsSearch = ({
     return (
       <>
         {parts.map((part, index) =>
-          index % 2 === 1 ? ( // каждая нечётная часть это совпадение
+          index % 2 === 1 ? ( // each odd part is a match
             <span key={index} className="text-secondary-purple">
               {part}
             </span>

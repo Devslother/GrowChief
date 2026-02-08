@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 1. Находим токен в таблице PasswordResetToken
+    // 1. Find token in PasswordResetToken table
     const resetRecord = await prisma.passwordResetToken.findUnique({
       where: { token },
     });
@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 2. Ищем пользователя по email
+    // 2. Find user by email
     const user = await prisma.user.findUnique({
       where: { email: resetRecord.email },
     });
@@ -34,10 +34,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    // 3. Хэшируем пароль
+    // 3. Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // 4. Обновляем пароль пользователя
+    // 4. Update user password
     await prisma.user.update({
       where: { email: user.email! },
       data: {
@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    // 5. Удаляем токен (ONE-TIME USE)
+    // 5. Delete token (ONE-TIME USE)
     await prisma.passwordResetToken.delete({
       where: { token },
     });

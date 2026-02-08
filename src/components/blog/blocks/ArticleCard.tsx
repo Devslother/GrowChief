@@ -15,7 +15,6 @@ export const ArticleCard = ({ article, author }: ArticleCardProps) => {
 
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-[32px] border border-[#555555] bg-neutral-80 transition-opacity hover:opacity-90">
-      {/* обложка */}
       <Link
         href={`/blog/${article.slug}`}
         className="relative overflow-hidden block h-[252px]  max-md:h-[230px]"
@@ -28,7 +27,6 @@ export const ArticleCard = ({ article, author }: ArticleCardProps) => {
         />
       </Link>
 
-      {/* контент */}
       <div className="flex flex-1 flex-col px-4 py-5 max-lg:p-4 max-md:px-4 max-md:py-8">
         <Link href={`/blog/${article.slug}`}>
           <h3 className="font-body-2 text-left line-clamp-3 min-h-[4.5rem] max-md:block max-md:overflow-visible max-md:min-h-0 mb-4">

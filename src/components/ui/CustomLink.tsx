@@ -19,7 +19,6 @@ const CustomLink = ({
   isActive,
   ...rest
 }: Props) => {
-  // Проверяем, внешняя ли ссылка
   const isExternal = href.startsWith("http");
   return (
     <Link

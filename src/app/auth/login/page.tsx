@@ -17,7 +17,6 @@ export default function LoginPage() {
           flex flex-col gap-6
         "
       >
-        {/* логотип + Grow */}
         <AuthLogoEye />
 
         <h1 className="font-sans-serif text-2xl font-bold text-center">

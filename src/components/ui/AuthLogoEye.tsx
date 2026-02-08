@@ -4,7 +4,6 @@ export const AuthLogoEye = () => {
   return (
     <div className="flex flex-row gap-[10px] items-center justify-center">
       <div className="relative w-[60px] h-[60px] rounded-full overflow-hidden">
-        {/* фон */}
         <Image
           src="/images/eye-bg.png"
           alt=""
@@ -13,7 +12,6 @@ export const AuthLogoEye = () => {
           className="object-cover"
         />
 
-        {/* SVG глаз */}
         <div className="absolute inset-0 flex items-center justify-center">
           <Image
             src="/images/eye.svg"

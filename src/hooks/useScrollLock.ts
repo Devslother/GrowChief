@@ -1,15 +1,15 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Глобальный счётчик блокировок.
- * Если на странице несколько компонентов вызывают блокировку,
- * скролл разблокируется только когда все отпустят.
+ * Global lock counter.
+ * If multiple components on page trigger lock,
+ * scroll unlocks only when all release.
  */
 let lockCount = 0;
 
 /**
- * Хук для блокировки прокрутки body.
- * @param locked если true — блокируем; если false — отпускаем
+ * Hook for locking body scroll.
+ * @param locked if true — lock; if false — unlock
  */
 export function useScrollLock(locked: boolean) {
   const prevOverflowRef = useRef<string | null>(null);
@@ -21,17 +21,17 @@ export function useScrollLock(locked: boolean) {
     const body = document.body;
 
     const lock = () => {
-      // уже заблокировано кем-то ещё — просто увеличим счётчик
+      // already locked by someone else — just increment counter
       if (lockCount > 0) {
         lockCount++;
         return;
       }
 
-      // запомним предыдущие стили, чтобы корректно вернуть
+      // remember previous styles to correctly restore
       prevOverflowRef.current = body.style.overflow;
       prevPaddingRightRef.current = body.style.paddingRight;
 
-      // компенсируем ширину скроллбара, чтобы не было "дёргания" контента
+      // compensate scrollbar width to avoid content "jumping"
       const scrollbarWidth =
         window.innerWidth - document.documentElement.clientWidth;
       if (scrollbarWidth > 0) {
@@ -45,7 +45,7 @@ export function useScrollLock(locked: boolean) {
     const unlock = () => {
       if (lockCount > 0) lockCount--;
       if (lockCount === 0) {
-        // вернуть исходные значения
+        // restore original values
         body.style.overflow = prevOverflowRef.current ?? "";
         body.style.paddingRight = prevPaddingRightRef.current ?? "";
         prevOverflowRef.current = null;
@@ -56,7 +56,7 @@ export function useScrollLock(locked: boolean) {
     if (locked) lock();
     else unlock();
 
-    // страховка на размонтирование
+    // safety on unmount
     return () => {
       if (locked) unlock();
     };

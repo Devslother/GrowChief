@@ -38,12 +38,10 @@ export const MobileDrawer = ({
     <div
       className={cn(
         "fixed inset-0 z-40",
-        // контейнер кликается только когда открыт (чтобы не блокировать страницу)
         open ? "pointer-events-auto" : "pointer-events-none"
       )}
       aria-hidden={!open}
     >
-      {/* Оверлей: плавная прозрачность */}
       <button
         type="button"
         aria-label="Close menu"
@@ -54,14 +52,12 @@ export const MobileDrawer = ({
         )}
       />
 
-      {/* Панель: выезд справа */}
       <aside
         id={id}
         role="dialog"
         aria-modal="true"
         className={cn(
           "absolute right-0 top-0 h-svh w-full bg-black shadow-2xl",
-          // анимация трансформации
           "transition-transform duration-300 ease-out will-change-transform",
           open ? "translate-x-0" : "translate-x-full"
         )}

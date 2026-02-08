@@ -29,10 +29,8 @@ export const PricingCard = ({ card, billing }: PricingCardProps) => {
   return (
     <div className={cn("pricing-border", borderClass)}>
       <div className={cn("pricing-card", `pricing-card--${card.theme}`)}>
-        {/* Заголовок */}
         <h3 className="font-body-4 mb-4 max-lg:mb-3">{card.title}</h3>
 
-        {/* Цена */}
         <div className="mb-[30px] max-lg:mb-5">
           <div className="flex items-end gap-1">
             <AnimatePresence mode="wait">
@@ -49,7 +47,6 @@ export const PricingCard = ({ card, billing }: PricingCardProps) => {
             </AnimatePresence>
             <span className="font-body-6 text-white/60">/month</span>
           </div>
-          {/* подзаголовок под ценой всегда занимает место */}
           <p
             className={cn(
               "text-white/60 font-body-6 mt-2 min-h-[20px] transition-opacity duration-200",
@@ -60,10 +57,8 @@ export const PricingCard = ({ card, billing }: PricingCardProps) => {
           </p>
         </div>
 
-        {/* Горизонтальная линия */}
         <div className="w-full h-px bg-white/15 mb-[30px] max-lg:mb-5"></div>
 
-        {/* Список возможностей */}
         <ul className="flex flex-col gap-3 mb-8 max-lg:gap-1.5 max-lg:mb-4">
           {card.details.map(({ Icon, description }) => (
             <li
@@ -76,7 +71,6 @@ export const PricingCard = ({ card, billing }: PricingCardProps) => {
           ))}
         </ul>
 
-        {/* Кнопка */}
         <div className="mt-auto flex w-full justify-center">
           <Button
             element="a"

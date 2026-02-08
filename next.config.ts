@@ -18,18 +18,18 @@ const nextConfig: NextConfig = {
     domains: [],
     deviceSizes: [320, 360, 375, 390, 414, 425, 480, 640, 750, 828, 1080, 1200],
   },
-  // Оптимизация для production
+  // Optimization for production
   compress: true,
   poweredByHeader: false,
-  // Включаем Prisma Query Engine в сборку для Netlify
+  // Include Prisma Query Engine in build for Netlify
   webpack: (config, { isServer }) => {
     if (isServer) {
-      // Копируем Prisma Query Engine после сборки
+      // Copy Prisma Query Engine after build
       const originalEntry = config.entry;
       config.entry = async () => {
         const entries = await originalEntry();
 
-        // Копируем engine после того, как webpack соберет все
+        // Copy engine after webpack builds everything
         if (process.env.NODE_ENV === "production") {
           const enginePath = join(
             process.cwd(),
@@ -56,14 +56,14 @@ const nextConfig: NextConfig = {
       };
     }
 
-    // Настраиваем resolve для поддержки алиаса @/ в динамических импортах
+    // Configure resolve to support @/ alias in dynamic imports
     config.resolve = config.resolve || {};
     config.resolve.alias = {
       ...config.resolve.alias,
       "@": join(process.cwd(), "src"),
     };
 
-    // Улучшаем парсинг зависимостей для MDX loader
+    // Improve dependency parsing for MDX loader
     if (config.cache && typeof config.cache === "object") {
       config.cache.buildDependencies = {
         ...config.cache.buildDependencies,

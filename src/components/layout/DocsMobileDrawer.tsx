@@ -26,12 +26,10 @@ export const DocsMobileDrawer = ({
     <div
       className={cn(
         "fixed inset-0 z-40",
-        // контейнер кликается только когда открыт (чтобы не блокировать страницу)
         open ? "pointer-events-auto" : "pointer-events-none"
       )}
       aria-hidden={!open}
     >
-      {/* Оверлей: плавная прозрачность */}
       <button
         type="button"
         aria-label="Close menu"
@@ -42,14 +40,12 @@ export const DocsMobileDrawer = ({
         )}
       />
 
-      {/* Панель: выезд сверху */}
       <aside
         id={id}
         role="dialog"
         aria-modal="true"
         className={cn(
           "absolute inset-x-0 top-0 w-full bg-black shadow-2xl h-full overflow-y-auto",
-          // анимация трансформации
           "transition-transform duration-300 ease-out will-change-transform",
           open ? "translate-y-0" : "-translate-y-full"
         )}

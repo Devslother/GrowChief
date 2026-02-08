@@ -24,9 +24,7 @@ const Accordion = ({ items }: AccordionProps) => {
 
         return (
           <div key={index} className="relative">
-            {/* Внешняя рамка: в закрытом и открытом состояниях одна и та же */}
             <div className={cn("rounded-3xl overflow-hidden", "faq-border")}>
-              {/* ВЕСЬ контент — один блок, он ВСЕГДА в DOM */}
               <div
                 onClick={() => toggle(index)}
                 className={cn(
@@ -37,12 +35,11 @@ const Accordion = ({ items }: AccordionProps) => {
                   "transition-colors duration-500 ease-out"
                 )}
               >
-                {/* Фоновая картинка: загружаем только при открытии */}
                 {opened && (
                   <picture className="pointer-events-none absolute inset-0 z-10 h-full w-full">
                     <source srcSet="/images/faq-bg.avif" type="image/avif" />
                     <source srcSet="/images/faq-bg.webp" type="image/webp" />
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    { }
                     <img
                       src="/images/faq-bg.png"
                       alt=""
@@ -53,7 +50,6 @@ const Accordion = ({ items }: AccordionProps) => {
                   </picture>
                 )}
 
-                {/* Верх: вопрос + стрелка */}
                 <div className="relative z-10 flex items-center justify-between gap-4">
                   <h3 className="font-body-1 text-start">{item.question}</h3>
                   <DownIcon
@@ -64,7 +60,7 @@ const Accordion = ({ items }: AccordionProps) => {
                   />
                 </div>
 
-                {/* Анимируем высоту ответа — grid-trick */}
+                {/* Animate answer height — grid-trick */}
                 <div
                   className={cn(
                     "relative z-10 grid transition-[grid-template-rows] duration-600 ease-[cubic-bezier(0.25,1,0.5,1)]",

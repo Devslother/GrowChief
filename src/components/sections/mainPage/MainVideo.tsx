@@ -10,7 +10,6 @@ const MainVideo = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [autoplayBlocked, setAutoplayBlocked] = useState(false);
 
-  // ручной старт (fallback)
   const handlePlay = () => {
     if (!videoRef.current) return;
     if (!sourcesLoaded) {
@@ -23,13 +22,11 @@ const MainVideo = () => {
     setIsPlaying(true);
   };
 
-  // ресайз источников под брейкпоинты
   useEffect(() => {
     const cleanup = handleVideoResize(videoRef.current);
     return cleanup;
   }, []);
 
-  // lazy-load источников и autoplay, когда секция появляется во вьюпорте
   useEffect(() => {
     if (!containerRef.current) return;
 
@@ -48,7 +45,6 @@ const MainVideo = () => {
     return () => observer.disconnect();
   }, []);
 
-  // автозапуск после загрузки источников
   useEffect(() => {
     if (!sourcesLoaded || !videoRef.current) return;
     videoRef.current
@@ -79,7 +75,6 @@ const MainVideo = () => {
         >
           {sourcesLoaded && (
             <>
-              {/* Desktop */}
               <source
                 media="(min-width: 768px)"
                 src="/videos/main/main-video.webm"
@@ -90,7 +85,6 @@ const MainVideo = () => {
                 src="/videos/main/main-video.mp4"
                 type="video/mp4"
               />
-              {/* Mobile */}
               <source
                 media="(max-width: 767px)"
                 src="/videos/main/main-video-mobile.webm"
@@ -106,7 +100,6 @@ const MainVideo = () => {
           Ваш браузер не поддерживает video
         </video>
 
-        {/* Fallback: если autoplay заблокирован */}
         {!isPlaying && autoplayBlocked && (
           <button
             type="button"

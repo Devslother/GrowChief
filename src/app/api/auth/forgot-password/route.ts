@@ -10,28 +10,28 @@ export async function POST(req: Request) {
   try {
     const { email } = await req.json();
 
-    // 1. Проверяем email
+    // 1. Check email
     if (!email) {
       return NextResponse.json({ error: "Email is required" }, { status: 400 });
     }
 
-    // 2. Проверяем, что пользователь существует
+    // 2. Check that user exists
     const user = await prisma.user.findUnique({
       where: { email },
     });
 
     if (!user) {
-      // Идеально: НЕ раскрывать, есть ли такой email
+      // Ideally: DON'T reveal if such email exists
       return NextResponse.json(
         { message: "If the account exists, we sent reset instructions" },
         { status: 200 }
       );
     }
 
-    // 3. Генерируем токен
+    // 3. Generate token
     const token = crypto.randomUUID();
 
-    // 4. Создаём токен сброса пароля
+    // 4. Create password reset token
     await prisma.passwordResetToken.create({
       data: {
         email,
@@ -40,12 +40,12 @@ export async function POST(req: Request) {
       },
     });
 
-    // 5. Формируем ссылку
+    // 5. Build link
     const resetUrl = `${
       process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
     }/auth/reset-password?token=${token}`;
 
-    // 6. Отправляем письмо через Resend
+    // 6. Send email via Resend
     try {
       if (!process.env.RESEND_API_KEY) {
         if (process.env.NODE_ENV === "development") {

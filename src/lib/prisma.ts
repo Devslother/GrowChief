@@ -6,9 +6,9 @@ const globalForPrisma = globalThis as typeof globalThis & {
   prisma?: PrismaClient;
 };
 
-// Устанавливаем путь к Query Engine для Netlify только если файл существует
-// Это нужно для того, чтобы Prisma мог найти engine на Netlify
-// НЕ устанавливаем во время postinstall, только во время runtime
+// Set path to Query Engine for Netlify only if file exists
+// This is needed so Prisma can find engine on Netlify
+// Do NOT set during postinstall, only during runtime
 if (
   process.env.NODE_ENV === "production" &&
   !process.env.PRISMA_QUERY_ENGINE_LIBRARY
@@ -17,7 +17,7 @@ if (
     process.cwd(),
     "src/generated/prisma/libquery_engine-rhel-openssl-3.0.x.so.node"
   );
-  // Устанавливаем переменную окружения только если файл существует
+  // Set environment variable only if file exists
   if (existsSync(enginePath)) {
     process.env.PRISMA_QUERY_ENGINE_LIBRARY = enginePath;
   }

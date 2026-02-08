@@ -8,10 +8,10 @@ import type {
 
 const DEFAULT_AVATAR = "/blog/author.png";
 
-// Кэш авторов (по нормализованному slug)
+// Author cache (by normalized slug)
 const authorCache: Record<string, Author> = {};
 
-// Кэш для data.ts (чтобы не импортировать его каждый раз)
+// Cache for data.ts (to avoid importing it every time)
 let dataCache: {
   authorsData: Record<string, AuthorFrontmatter>;
   blogPostsData: Record<string, BlogPostFrontmatter>;
@@ -42,7 +42,7 @@ async function getData() {
 }
 
 /**
- * Загружает данные автора
+ * Loads author data
  */
 export async function getAuthor(
   authorSlug: string | undefined | null
@@ -51,7 +51,7 @@ export async function getAuthor(
 
   const normalizedSlug = normalizeSlug(authorSlug);
 
-  // Кэш
+  // Cache
   if (authorCache[normalizedSlug]) {
     return authorCache[normalizedSlug];
   }
@@ -86,7 +86,7 @@ export async function getAuthor(
 }
 
 /**
- * Гарантированно возвращает автора (никогда не null)
+ * Guaranteed to return author (never null)
  */
 export async function getCachedAuthor(
   authorSlug: string | undefined | null
@@ -96,7 +96,7 @@ export async function getCachedAuthor(
 }
 
 /**
- * Загружает статью блога по slug (только метаданные, контент — через MdxLoader)
+ * Loads blog post by slug (metadata only, content via MdxLoader)
  */
 export async function getBlogPost(slug: string | undefined | null) {
   if (!slug) return null;
@@ -110,7 +110,7 @@ export async function getBlogPost(slug: string | undefined | null) {
       return null;
     }
 
-    // Контент берём по slug в MDX (через клиентский компонент)
+    // Content is loaded by slug in MDX (via client component)
     return {
       frontmatter,
       slug: frontmatter.slug ?? normalizedSlug,
@@ -122,7 +122,7 @@ export async function getBlogPost(slug: string | undefined | null) {
 }
 
 /**
- * Все статьи с авторами — для списка на /blog и блока Related
+ * All articles with authors — for /blog list and Related block
  */
 export async function getAllBlogPostsWithAuthors(): Promise<
   Array<{ article: BlogPostFrontmatter; author: Author; slug: string }>

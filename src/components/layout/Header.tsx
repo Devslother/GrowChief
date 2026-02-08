@@ -22,13 +22,13 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const toggleMenu = () => setMenu((prev) => !prev);
 
-  // блокируем прокрутку при открытом меню, передаём текущее состояние
+  // block scrolling when menu is open, pass current state
   useScrollLock(menu);
 
-  // фон шапки при скролле
+  // header background on scroll
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 20);
-    onScroll(); // выставить состояние при первой отрисовке
+    onScroll(); // set state on first render
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);

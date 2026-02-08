@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 /**
- * Форматирование даты для отображения
+ * Format date for display
  */
 export function formatDate(dateString: string): string {
   return new Date(dateString).toLocaleDateString("en-US", {

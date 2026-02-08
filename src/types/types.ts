@@ -4,7 +4,7 @@ export interface PricingPrice {
 }
 
 export interface PricingDetail {
-  Icon: React.ElementType; // компонент-иконка
+  Icon: React.ElementType; // icon component
   description: string;
 }
 
@@ -29,7 +29,7 @@ export interface BlogPostFrontmatter {
 
 export interface AuthorFrontmatter {
   authorSlug: string;
-  avatar?: string; // Опционально - если не указан, будет использован дефолтный /blog/author.png
+  avatar?: string; // Optional - if not specified, default /blog/author.png will be used
   description?: string;
 }
 

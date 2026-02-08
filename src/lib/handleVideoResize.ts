@@ -6,11 +6,11 @@ export function handleVideoResize(video: HTMLVideoElement | null) {
   );
 
   const updateVideo = () => {
-    // запоминаю состояние, чтобы не обрывать просмотр
+    // remember state to not interrupt playback
     const currentTime = video.currentTime;
     const wasPlaying = !video.paused && !video.ended;
 
-    video.load(); // браузер заново выберет подходящий <source>
+    video.load(); // browser will re-select appropriate <source>
 
     if (wasPlaying) {
       video.currentTime = currentTime;
@@ -18,10 +18,10 @@ export function handleVideoResize(video: HTMLVideoElement | null) {
     }
   };
 
-  // первый запуск, чтобы учесть текущую ширину окна
+  // first run to account for current window width
   updateVideo();
 
-  // собираю все media из <source media="...">
+  // collect all media from <source media="...">
   const mqls = sources
     .map((source) => source.media)
     .filter(Boolean)
@@ -31,29 +31,29 @@ export function handleVideoResize(video: HTMLVideoElement | null) {
       return mql;
     });
 
-  // наблюдатель за появлением видео в вьюпорте
+  // observer for video appearance in viewport
   const observer = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
         if (entry.isIntersecting) {
-          // как минимум попробуем автозапуск
+          // at least try autoplay
           video.play().catch(() => {
-            // браузер мог запретить автоплей со звуком
+            // browser might have blocked autoplay with sound
           });
         } else {
-          // ушло из кадра → ставим на паузу
+          // left frame → pause
           video.pause();
         }
       }
     },
     {
-      threshold: 0.5, // 50% элемента в кадре
+      threshold: 0.5, // 50% of element in frame
     }
   );
 
   observer.observe(video);
 
-  // функция очистки
+  // cleanup function
   return () => {
     mqls.forEach((mql) => mql.removeEventListener("change", updateVideo));
     observer.disconnect();

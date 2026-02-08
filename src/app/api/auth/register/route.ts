@@ -17,7 +17,7 @@ export async function POST(req: Request) {
       );
     }
 
-    // Проверяем, существует ли пользователь
+    // Check if user exists
     const existingUser = await prisma.user.findUnique({
       where: { email },
     });
@@ -29,13 +29,13 @@ export async function POST(req: Request) {
       );
     }
 
-    // Хешируем пароль
+    // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Генерируем токен верификации
+    // Generate verification token
     const verificationToken = crypto.randomUUID();
 
-    // Создаем пользователя
+    // Create user
     const user = await prisma.user.create({
       data: {
         email,
@@ -45,7 +45,7 @@ export async function POST(req: Request) {
       },
     });
 
-    // Отправляем письмо с приветствием
+    // Send welcome email
     try {
       if (process.env.RESEND_API_KEY) {
         await resend.emails.send({
@@ -78,7 +78,7 @@ export async function POST(req: Request) {
       }
     } catch (sendError) {
       console.error("Failed to send welcome email:", sendError);
-      // Не блокируем регистрацию, если email не отправился
+      // Don't block registration if email failed to send
     }
 
     return NextResponse.json(

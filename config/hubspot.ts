@@ -1,8 +1,8 @@
 export const hubspotConfig = {
-  // Для Free плана используем только Portal ID
+  // For Free plan use only Portal ID
   portalId: process.env.HUBSPOT_PORTAL_ID || "",
-  // token не нужен для встроенных форм
-  useEmbedForms: true, // флаг для использования embed форм
+  // token not needed for embedded forms
+  useEmbedForms: true, // flag for using embed forms
 };
 
 export const hubspotFormIds = {

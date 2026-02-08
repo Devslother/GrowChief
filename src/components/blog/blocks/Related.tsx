@@ -9,14 +9,14 @@ interface RelatedArticle {
 
 interface RelatedProps {
   articles: RelatedArticle[];
-  currentSlug?: string; // Исключаем текущую статью
-  filterBy?: "tags" | "author"; // Тип фильтрации
-  currentArticle?: BlogPostFrontmatter; // Текущая статья (для фильтрации по тегам)
-  currentAuthorSlug?: string; // Текущий автор (для фильтрации по автору)
+  currentSlug?: string; // Exclude current article
+  filterBy?: "tags" | "author"; // Filter type
+  currentArticle?: BlogPostFrontmatter; // Current article (for tag filtering)
+  currentAuthorSlug?: string; // Current author (for author filtering)
 }
 
 /**
- * Нормализует теги - преобразует строку или массив в массив строк
+ * Normalizes tags - converts string or array to array of strings
  */
 function normalizeTags(tags: string[] | string | undefined): string[] {
   if (!tags) return [];
@@ -25,7 +25,7 @@ function normalizeTags(tags: string[] | string | undefined): string[] {
 }
 
 /**
- * Проверяет, есть ли общие теги между двумя статьями
+ * Checks if there are common tags between two articles
  */
 function hasCommonTags(
   tags1: string[] | string | undefined,
@@ -42,7 +42,7 @@ function hasCommonTags(
 }
 
 /**
- * Подсчитывает количество общих тегов между двумя статьями
+ * Counts number of common tags between two articles
  */
 function countCommonTags(
   tags1: string[] | string | undefined,
@@ -69,21 +69,21 @@ export const Related = ({
     (item) => item.article.slug !== currentSlug
   );
 
-  // Фильтрация по тегам
+  // Filter by tags
   if (filterBy === "tags" && currentArticle) {
     filteredArticles = filteredArticles.filter((item) =>
       hasCommonTags(currentArticle.tags, item.article.tags)
     );
 
-    // Сортируем по количеству общих тегов (больше общих тегов = выше)
+    // Sort by number of common tags (more common tags = higher)
     filteredArticles.sort((a, b) => {
       const countA = countCommonTags(currentArticle.tags, a.article.tags);
       const countB = countCommonTags(currentArticle.tags, b.article.tags);
-      return countB - countA; // По убыванию
+      return countB - countA; // Descending
     });
   }
 
-  // Фильтрация по автору
+  // Filter by author
   if (filterBy === "author" && currentAuthorSlug) {
     filteredArticles = filteredArticles.filter(
       (item) =>
@@ -91,15 +91,15 @@ export const Related = ({
         currentAuthorSlug.toLowerCase()
     );
 
-    // Сортируем по дате (новые статьи первыми)
+    // Sort by date (newest articles first)
     filteredArticles.sort((a, b) => {
       const dateA = new Date(a.article.date).getTime();
       const dateB = new Date(b.article.date).getTime();
-      return dateB - dateA; // По убыванию (новые сначала)
+      return dateB - dateA; // Descending (newest first)
     });
   }
 
-  // Берем максимум 3 статьи
+  // Take maximum 3 articles
   const relatedArticles = filteredArticles.slice(0, 3);
 
   if (relatedArticles.length === 0) {

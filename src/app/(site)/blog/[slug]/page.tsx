@@ -40,7 +40,6 @@ export default async function ArticlePage({
     <main className="layout-shell pt-12">
       <div className="flex flex-col items-center">
         <div className="flex flex-row items-start w-full gap-5 max-lg:flex-col">
-          {/* Back */}
           <div className="flex flex-row items-center gap-1 shrink-0 mt-2">
             <Back />
             <Button variant="link" classes="p-0" element="a" href="/blog">
@@ -48,30 +47,24 @@ export default async function ArticlePage({
             </Button>
           </div>
 
-          {/* Статья */}
           <div className="flex flex-col items-center w-200 mx-auto max-lg:w-full pb-[120px] gap-6 max-md:pb-20">
             <h2 className="text-[48px] leading-[110%] font-semibold max-md:text-[36px] w-full text-left">
               {frontmatter.title}
             </h2>
 
-            {/* author, date, social icons */}
             <div className="flex flex-row justify-between items-center max-md:flex-col max-md:items-start w-full gap-4">
               <AuthorData author={author} date={frontmatter.date} />
-              {/* соцсети */}
               <ShareSocial />
             </div>
-            {/* article */}
             <div className="w-full prose prose-invert max-w-none blog-prose">
               <MdxLoader slug={safeSlug} />
               <ExternalLinksHandler />
             </div>
 
-            {/* date, social icons */}
             <div className="flex flex-row justify-between items-center max-md:flex-col max-md:items-start w-full gap-4 mt-4">
               <p className="font-body-6 text-left">
                 {formatDate(frontmatter.date)}
               </p>
-              {/* соцсети */}
               <ShareSocial />
             </div>
             <AuthorCard author={author} href={`/blog/authors/${author.slug}`} />

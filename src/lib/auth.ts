@@ -10,11 +10,11 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   debug: process.env.NODE_ENV === "development",
   useSecureCookies: process.env.NODE_ENV === "production",
-  // Для Netlify важно установить NEXTAUTH_URL в env переменных
-  // Это должно быть: https://your-domain.netlify.app
+  // For Netlify it's important to set NEXTAUTH_URL in env variables
+  // Should be: https://your-domain.netlify.app
   session: {
-    strategy: "jwt", // рекомендовано для App Router
-    maxAge: 30 * 24 * 60 * 60, // 30 дней
+    strategy: "jwt", // recommended for App Router
+    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   events: {
     async createUser(message) {
@@ -24,13 +24,13 @@ export const authOptions: NextAuthOptions = {
     },
     async linkAccount({ account, user }) {
       if (account.provider === "google" && user.email) {
-        // Проверяем, существует ли другой пользователь с таким email
+        // Check if another user with this email exists
         const existingUser = await prisma.user.findUnique({
           where: { email: user.email },
         });
 
         if (existingUser && existingUser.id !== user.id) {
-          // Если найден другой пользователь с таким email, обновляем связь Account
+          // If another user with this email is found, update Account link
           await prisma.account.updateMany({
             where: {
               provider: account.provider,
@@ -46,13 +46,13 @@ export const authOptions: NextAuthOptions = {
   },
 
   providers: [
-    // GOOGLE LOGIN (только если credentials установлены)
+    // GOOGLE LOGIN (only if credentials are set)
     ...(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET
       ? [
           GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            allowDangerousEmailAccountLinking: true, // Разрешаем связывание аккаунтов по email
+            allowDangerousEmailAccountLinking: true, // Allow account linking by email
           }),
         ]
       : []),
@@ -71,7 +71,7 @@ export const authOptions: NextAuthOptions = {
         }
 
         try {
-          // 1. Нахожу пользователя
+          // 1. Find user
           const user = await prisma.user.findUnique({
             where: { email: credentials.email },
           });
@@ -80,7 +80,7 @@ export const authOptions: NextAuthOptions = {
             throw new Error("Invalid email or password");
           }
 
-          // 2. Проверяю пароль
+          // 2. Check password
           const valid = await bcrypt.compare(
             credentials.password,
             user.password
@@ -90,7 +90,7 @@ export const authOptions: NextAuthOptions = {
             throw new Error("Invalid email or password");
           }
 
-          // 3. Возвращаю объект пользователя (будет в JWT)
+          // 3. Return user object (will be in JWT)
           return {
             id: user.id,
             email: user.email,
@@ -129,7 +129,7 @@ export const authOptions: NextAuthOptions = {
   },
 
   pages: {
-    signIn: "/auth/login", // кастомная страница логина
-    error: "/auth/login", // страница ошибки
+    signIn: "/auth/login", // custom login page
+    error: "/auth/login", // error page
   },
 };
