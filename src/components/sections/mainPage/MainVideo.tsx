@@ -16,10 +16,10 @@ const MainVideo = () => {
       setSourcesLoaded(true);
       return;
     }
-    videoRef.current.play().catch(() => {
-      setAutoplayBlocked(true);
-    });
-    setIsPlaying(true);
+    videoRef.current
+      .play()
+      .then(() => setIsPlaying(true))
+      .catch(() => setAutoplayBlocked(true));
   };
 
   useEffect(() => {
