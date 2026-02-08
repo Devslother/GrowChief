@@ -1,6 +1,6 @@
 # GrowChief
 
-GrowChief is a production-ready web platform built as a personal portfolio project.
+GrowChief is a production‑ready web platform focused on social media growth and engagement workflows.
 
 The entire frontend was independently implemented from Figma designs,
 with a strong focus on responsive layouts, UI consistency,
