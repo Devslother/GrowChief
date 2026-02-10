@@ -55,7 +55,7 @@ Frontend Developer (Junior-level)
 - **Documentation System**: Full-featured docs with search, navigation, and MDX support
 - **Blog Platform**: Dynamic blog with author profiles, related posts, and social sharing
 - **Authentication**: Secure user authentication with NextAuth.js and Prisma
-- **Responsive Design**: Mobile-first approach with Tailwind CSS 4
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
 - **MDX Support**: Rich content authoring with MDX
 - **SEO Optimized**: Meta tags, structured data, and optimized performance
 
@@ -149,7 +149,7 @@ grow/
 
 ## Styling
 
-The project uses **Tailwind CSS 4** with a CSS-first approach. Theme configuration is in `src/app/styles/globals.css` using the `@theme` directive.
+The project uses **Tailwind CSS** with a CSS-first approach. Theme configuration is in `src/app/styles/globals.css` using the `@theme` directive.
 
 ### Custom Styles
 
