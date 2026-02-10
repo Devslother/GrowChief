@@ -1,5 +1,8 @@
 # GrowChief
 
+**TL;DR**  
+Production-ready Next.js App Router platform with MDX-driven docs and blog, authentication, scalable layout architecture, and responsive UI built from Figma.
+
 GrowChief is a production‑ready web platform focused on social media growth and engagement workflows.
 
 The entire frontend was independently implemented from Figma designs,
@@ -48,7 +51,7 @@ Frontend Developer (Junior-level)
 
 ## Features
 
-- **Modern Tech Stack**: Next.js 16 with App Router, React 19, TypeScript 5
+- **Modern Tech Stack**: Next.js with App Router, React, TypeScript
 - **Documentation System**: Full-featured docs with search, navigation, and MDX support
 - **Blog Platform**: Dynamic blog with author profiles, related posts, and social sharing
 - **Authentication**: Secure user authentication with NextAuth.js and Prisma
@@ -58,10 +61,10 @@ Frontend Developer (Junior-level)
 
 ## Tech Stack
 
-- **Framework**: Next.js 16 (App Router)
-- **UI Library**: React 19
-- **Language**: TypeScript 5
-- **Styling**: Tailwind CSS 4 (CSS-first configuration)
+- **Framework**: Next.js (App Router)
+- **UI Library**: React
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS (CSS-first configuration)
 - **Content**: MDX
 - **Authentication**: NextAuth.js + Prisma
 - **Database**: PostgreSQL
