@@ -11,7 +11,7 @@ and real-world frontend patterns using the Next.js App Router.
 
 ## Preview
 
-Live demo: https://my-react-grow.netlify.app/
+Live demo: https://growchief.netlify.app/
 
 - Responsive layout (desktop & mobile)
 - Documentation and blog powered by MDX
